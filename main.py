@@ -22,7 +22,7 @@ def create_server_connection(host_name, user_name, user_password, db_name):
         print(f"Error: ' {err}'")
     return connection
 
-pw = 'cdcaf56efWSm2!'
+pw = 
 #connection = create_server_connection("localhost", "robin", pw)
 
 def create_database(connection, query):
