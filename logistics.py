@@ -10,63 +10,46 @@ import numpy as np
     6. Update to a server
 '''
 
-#products = pd.DataFrame(
-#        { 
-#            "product1" : [10000],
-#            "product2" : [20000],
-#            "product3" : [30000],
-#            "product4" : [40000],
-#            "product5" : [50000],
-#        }
-#    )
-#customers = pd.DataFrame(
-#        {
-#            "customer1" :[100],
-#            "customer2" :[200],
-#            "customer3" :[300],
-#            "customer4" :[400],
-#            "customer5" :[500],
-#        }
-#    )
-#suppliers = pd.DataFrame(
-#        {
-#            "supplier1" :[10],
-#            "supplier2" :[20],
-#            "supplier3" :[30],
-#            "supplier4" :[40],
-#            "supplier5" :[50],
-#        }
-#    )
-#
-#print(products.loc[0])
-
-#class Logistics():
-#
-#   def add_products():
-#       new_product = input("what product name: ")
-#       new_proudct_number = products. 
-#
-#   def change_products():
-#       pass
-#   def add_customers():
-#       pass
-#   def change_customers():
-#       pass
-#   def add_suppliers():
-#       pass
-#   def change_suppliers():
-#       pass
-#   def write_to_pdf():
-#       pass
-#   
-
-customers = {
-        "customer1" : 10000, "customer2" : 10001, "customer3" : 10003, "customer4" : 10004, "customer5" : 10005,
+products = pd.DataFrame(
+        { 
+            "product1" : [10000],
+            "product2" : [10001],
+            "product3" : [10002],
+            "product4" : [10003],
+            "product5" : [10004],
         }
-def add_customer():
-    new_customer = input("Name of new customer: ")
-    new_number = input("Number for customer: ")
-    customers[new_customer] = new_number
+    )
+customers = pd.DataFrame(
+        {
+            "customer1" :[100],
+            "customer2" :[101],
+            "customer3" :[102],
+            "customer4" :[103],
+            "customer5" :[104],
+        }
+    )
+suppliers = pd.DataFrame(
+        {
+            "supplier1" :[10],
+            "supplier2" :[11],
+            "supplier3" :[12],
+            "supplier4" :[13],
+            "supplier5" :[14],
+        }
+    )
 
-add_customer()
-print(customers)
+print(suppliers.head())
+   
+def new_customer():
+    customer_number = #last entry + 1
+    customer_name = input("Name of customer: ")
+    #Add a new customer column to df 
+ def new_product():                                                          
+     product_number = #last entry + 1                                       
+     prodcut_name = input("Name of the product: ")
+     #Add a new product column to df
+
+def new_supplier():
+    supplier_number = #last entry + 1
+    supplier_name = input("Name of supplier: ")
+    #Add a new supplier column to df 
