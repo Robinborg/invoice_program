@@ -38,18 +38,22 @@ suppliers = pd.DataFrame(
         }
     )
 
-print(suppliers.head())
-   
+#print(suppliers.head())
+print(customers.iloc[-1, -1])   
 def new_customer():
-    customer_number = #last entry + 1
+    customer_number = customers.iloc[-1, -1] + 1 
     customer_name = input("Name of customer: ")
-    #Add a new customer column to df 
- def new_product():                                                          
-     product_number = #last entry + 1                                       
-     prodcut_name = input("Name of the product: ")
-     #Add a new product column to df
+    customer[customer_name] = customer_number
+
+def new_product():                                                          
+    product_number = products.iloc[-1, -1] + 1                                      
+    product_name = input("Name of the product: ")
+    products[product_name] = product_number
 
 def new_supplier():
-    supplier_number = #last entry + 1
+    supplier_number = suppliers.iloc[-1, -1] + 1 
     supplier_name = input("Name of supplier: ")
-    #Add a new supplier column to df 
+    suppliers[supplier_name] = supplier_number 
+
+new_supplier()
+print(suppliers)
