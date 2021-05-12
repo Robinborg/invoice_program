@@ -1,6 +1,11 @@
 import pandas as pd
 import numpy as np
 
+from reportlab.platypus import SimpleDocTemplate, Table, Paragraph, TableStyle
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.styles import getSampleStyleSheet
+
 '''
     1. Make a pandas dataframe for products
     2. Make a pandas dataframe for customers
@@ -39,7 +44,7 @@ suppliers = pd.DataFrame(
     )
 
 #print(suppliers.head())
-print(customers.iloc[-1, -1])   
+
 def new_customer():
     customer_number = customers.iloc[-1, -1] + 1 
     customer_name = input("Name of customer: ")
@@ -55,5 +60,45 @@ def new_supplier():
     supplier_name = input("Name of supplier: ")
     suppliers[supplier_name] = supplier_number 
 
-new_supplier()
-print(suppliers)
+#new_supplier()
+#print(suppliers)
+
+DATA = [
+        ["Date", "Name", "Subscription", "Price"],
+        ["09.05.2021"],
+        ["Sessions", "", "", ""],
+        ["Sub total", "", "", "2000"],
+        ["Discount", "", "", "3000"],
+        ["Total", "", "", "4000"],
+
+        ]
+
+#Creating a base document template of page size A4
+pdf = SimpleDocTemplate("receipt.pdf", pagesize = A4)
+#Standard stylesheet defined within reportlab itself
+styles = getSampleStyleSheet()
+#Fetching the style of top level heading (heading1)
+title_style = styles["Heading1"]
+#0: left, 1: center, 2: right
+title_style.alignment = 1
+# Creating the paragraph with the heading text and passing the styles of it
+title = Paragraph("Invoice", title_style)
+#Create table style object and in it,
+#defines the styles row wise,
+#the tuples which look like coordinates
+#are nothing but rows and columns
+style = TableStyle (
+        [
+            ("BOX", (0,0), (-1, -1), 1, colors.black),
+            ("GRID", (0,0), (4,4), 1, colors.black),
+            ("BACKGROUND", (0,0), (3, 0), colors.gray),
+            ("TEXTCOLOR", (0,0), (-1, 0), colors.whitesmoke),
+            ("ALIGN", (0,0), (-1,-1), "CENTER"),
+            ("BACKGROUND", (0,1), (-1, -1), colors.beige),
+
+            ]
+        )
+#Creates a table object and passes styles to it
+table = Table(DATA, style=style)
+#Final step which builds the actual pd putting together all the elements
+pdf.build([title, table])
