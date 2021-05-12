@@ -72,6 +72,7 @@ DATA = [
         ["Total", "", "", "4000"],
 
         ]
+pandas_to_list = [suppliers.columns[:,].values.astype(str).tolist()] + suppliers.values.tolist()
 
 #Creating a base document template of page size A4
 pdf = SimpleDocTemplate("receipt.pdf", pagesize = A4)
@@ -99,6 +100,6 @@ style = TableStyle (
             ]
         )
 #Creates a table object and passes styles to it
-table = Table(DATA, style=style)
+table = Table(pandas_to_list, style=style)
 #Final step which builds the actual pd putting together all the elements
 pdf.build([title, table])
