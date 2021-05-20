@@ -1,19 +1,15 @@
 import pandas as pd
 import numpy as np
 
-from reportlab.platypus import  Table, Paragraph, TableStyle
 from reportlab.pdfgen import canvas
-from reportlab.lib import colors
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet
 
 '''
     1. Make a pandas dataframe for products
     2. Make a pandas dataframe for customers
     3. Make a pandas dataframe for suppliers
-    4. Make an invoice template (Make it in html?) 
+    4. Make an invoice template (Reportlab)
     5. Fetch data from customers dataframe and products dataframe for invoice
-    6. Update to a server
+    6. Launch a server
 '''
 
 products = pd.DataFrame(
@@ -61,37 +57,27 @@ def new_supplier():
     supplier_name = input("Name of supplier: ")
     suppliers[supplier_name] = supplier_number 
 
-#new_supplier()
-#print(suppliers)
 
-##DATA = [
-#        ["Date", "Name", "Subscription", "Price"],
-#        ["09.05.2021"],
-#        ["Sessions", "", "", ""],
-#        ["Sub total", "", "", "2000"],
-#        ["Discount", "", "", "3000"],
-#        ["Total", "", "", "4000"],
-#
-#        ]
 #pandas_to_list = [suppliers.columns[:,].values.astype(str).tolist()] + suppliers.values.tolist()
 
 #Creating the canvas
 c = canvas.Canvas("receipt.pdf",pagesize=(200,250), bottomup=0)
 #Creating the logo
-#c.translate(10,40)
-#c.scale(1, -1)
-#c.drawImage("logo.jpg", 0, 0, width=50, height=30)
-#
+c.translate(10,40)
+c.scale(1, -1)
+c.drawImage("logo.jpg", 0, 0, width=50, height=30)
+
+
 #Title section
 c.scale(1, -1)
 c.setFont("Helvetica-Bold", 10)
 c.drawCentredString(125, 20, "Oomph Technology Ab Oy")
 c.line(70,22,180, 22)
 c.setFont("Helvetica-Bold", 5)
-c.drawCentredString(125,30, "Storkärrsvägen 28")
-c.drawCentredString(125, 35, "25870 DRAGSFJÄRD, Finland")
+c.drawCentredString(125,30, "Address xyz")
+c.drawCentredString(125, 35, "Postal number 123")
 c.setFont("Helvetica-Bold", 6)
-c.drawCentredString(125, 42, "Business ID: 2113331-2")
+c.drawCentredString(125, 42, "Business ID: ")
 c.line(5, 45, 195, 45)
 
 c.setFont("Courier-Bold", 8)
@@ -126,32 +112,6 @@ c.drawString(20, 235, "(This system generated invoice)")
 c.drawRightString(180, 235, "Authorised signatory")
 
 c.showPage()
+c.save()
 
 
-#Standard stylesheet defined within reportlab itself
-#styles = getSampleStyleSheet()
-#Fetching the style of top level heading (heading1)
-#title_style = styles["Heading1"]
-#0: left, 1: center, 2: right
-#title_style.alignment = 1
-# Creating the paragraph with the heading text and passing the styles of it
-#title = Paragraph("Invoice", title_style)
-#Create table style object and in it,
-#defines the styles row wise,
-#the tuples which look like coordinates
-#are nothing but rows and columns
-#style = TableStyle (
-#        [
-#            ("BOX", (0,0), (-1, -1), 1, colors.black),
-#            ("GRID", (0,0), (4,4), 1, colors.black),
-#            ("BACKGROUND", (0,0), (3, 0), colors.gray),
-#            ("TEXTCOLOR", (0,0), (-1, 0), colors.whitesmoke),
-#            ("ALIGN", (0,0), (-1,-1), "CENTER"),
-#            ("BACKGROUND", (0,1), (-1, -1), colors.beige),
-#
-#            ]
-#        )
-##Creates a table object and passes styles to it
-#table = Table(pandas_to_list, style=style)
-##Final step which builds the actual pd putting together all the elements
-#pdf.build([title, table])
