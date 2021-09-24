@@ -1,15 +1,15 @@
 '''Generate invoices'''
 
 from invoice import InvoiceTemplate
+#from working_data import Fetch_and_transform
+#from working_data import fetch_client, fetch_product
 
-first_invoice = InvoiceTemplate('jane_smith', 1)
+first_invoice = InvoiceTemplate("1")
+first_invoice.create_document()
+first_invoice.save_pdf()
+#retrieve_data = Fetch_and_Transform.fetch_client()
+#retrieve_data.fetch_client()
+#retrieve_data.fetch_products()
 
-first_invoice.blank_canvas()
-    
-#Need to build the invoice in one go
-'''Which means that,
-   1. Load data from database
-   2. Input client, product
-   3. Send information to Canvas
-'''
+
 
