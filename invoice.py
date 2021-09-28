@@ -1,22 +1,37 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.lib.units import cm
+from reportlab.lib.units import cm, mm
+from reportlab.lib import colors
 
 
 class InvoiceTemplate:
     def __init__(self, invoice_number):
+        '''Start canvas'''
         self.PAGE_SIZE = (595.27, 841.90)
         self.c = canvas.Canvas(invoice_number + ".pdf", pagesize=self.PAGE_SIZE, bottomup=0)
+        self.width, self.height = A4
 
-    def create_document(self):
+    def make_data_table(self, data_table):
+        self.style = TableStyle([
+            ('BOX', (0,0), (-1,-1), 0.25, colors.black),
+            ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
+            ('ALIGN', (0,-1), (-1,-1), "CENTER"),
+            ('VALIGN', (3,3), (-1,-1), "BOTTOM"),
+            ('FONTSIZE', (0,0), (-1,-1), 5),
+            ])
+        self.table = Table(data_table, style=self.style)
+
+
+    def create_document(self, product=None, customer=None):
         '''template invoice'''
+        #Information section
         self.c.translate(10, 40)
         self.c.scale(1, -1)
+        self.c.scale(1, -1)
         self.c.setFont("Helvetica-Bold", 5)
-        self.c.drawCentredString(30, 0, "Oomph Technology Ab Oy")
-        
+        self.c.drawCentredString(30, 0, "Company Ab Oy")
         self.c.setFont("Helvetica-Bold", 2)
         self.c.drawCentredString(30, 2, "Address xyz")
         self.c.drawCentredString(30, 6, "Postal number 123")
@@ -33,19 +48,11 @@ class InvoiceTemplate:
         self.c.drawRightString(45, 40, "Date: ")
         self.c.drawRightString(45, 50, "Customer name: ")
         self.c.drawRightString(45, 60, "Phone number: ")
+        #Table
+        table_info = self.table
+        table_info.wrapOn(self.c, self.width, self.height)
+        table_info.drawOn(self.c, 0*mm, 30*mm)
 
-        self.c.roundRect(5, 70, 175, 130, 10, stroke=1, fill=0)
-        self.c.line(5, 80, 180, 80)
-        self.c.drawCentredString(28, 75, "Serial number: ")
-        self.c.drawCentredString(60, 75, "Goods description: ")
-        self.c.drawCentredString(120, 75, "Rate: ")
-        self.c.drawCentredString(145, 75, "QTY: ")
-        self.c.drawCentredString(165, 75, "Total: ")
-
-        self.c.line(35, 80, 35, 200)
-        self.c.line(115, 80, 115, 200)
-        self.c.line(135, 80, 135, 200)
-        self.c.line(160, 80, 160, 200)
         
         #Bottom section
         self.c.line(15, 220, 185, 220)
@@ -57,10 +64,7 @@ class InvoiceTemplate:
 
         self.c.showPage()
 
-    def make_table(self, client, product):
-        #Make table
-        pass
-
     def save_pdf(self):
         self.c.save()
+
 

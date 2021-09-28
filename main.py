@@ -1,15 +1,13 @@
 '''Generate invoices'''
 
 from invoice import InvoiceTemplate
-#from working_data import Fetch_and_transform
-#from working_data import fetch_client, fetch_product
+from working_data import FetchAndTransform
 
 first_invoice = InvoiceTemplate("1")
-first_invoice.create_document()
-first_invoice.save_pdf()
-#retrieve_data = Fetch_and_Transform.fetch_client()
-#retrieve_data.fetch_client()
-#retrieve_data.fetch_products()
+display_data = FetchAndTransform()
+first_invoice.make_data_table(display_data.working_table())
+first_invoice.create_document(1000000)
 
+first_invoice.save_pdf()
 
 
