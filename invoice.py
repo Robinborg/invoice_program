@@ -1,9 +1,9 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import  Paragraph, Table, TableStyle
 from reportlab.lib.units import cm, mm
 from reportlab.lib import colors
+from datetime import datetime
 
 
 class InvoiceTemplate:
@@ -12,6 +12,7 @@ class InvoiceTemplate:
         self.PAGE_SIZE = (595.27, 841.90)
         self.c = canvas.Canvas(invoice_number + ".pdf", pagesize=self.PAGE_SIZE, bottomup=0)
         self.width, self.height = A4
+        self.date = datetime.today().strftime('%d-%m-%Y')
 
     def make_data_table(self, data_table):
         self.style = TableStyle([
@@ -22,7 +23,6 @@ class InvoiceTemplate:
             ('FONTSIZE', (0,0), (-1,-1), 5),
             ])
         self.table = Table(data_table, style=self.style)
-
 
     def create_document(self, product=None, customer=None):
         '''template invoice'''
@@ -42,18 +42,15 @@ class InvoiceTemplate:
         self.c.setFont("Courier-Bold", 10)
         self.c.drawCentredString(80, -10, "Invoice")
         self.c.roundRect(5, 23, 170, 40, 10, stroke=1, fill=0)
-
         self.c.setFont("Times-Bold", 3)
         self.c.drawRightString(45, 30, "Invoice number: " )
-        self.c.drawRightString(45, 40, "Date: ")
+        self.c.drawRightString(45, 40, f"Date: {self.date} ")
         self.c.drawRightString(45, 50, "Customer name: ")
         self.c.drawRightString(45, 60, "Phone number: ")
         #Table
         table_info = self.table
         table_info.wrapOn(self.c, self.width, self.height)
         table_info.drawOn(self.c, 0*mm, 30*mm)
-
-        
         #Bottom section
         self.c.line(15, 220, 185, 220)
         self.c.line(100, 220, 100, 238)
@@ -61,7 +58,6 @@ class InvoiceTemplate:
         self.c.drawString(20, 230, "information is true")
         self.c.drawString(20, 235, "(This system generated invoice)")
         self.c.drawRightString(180, 235, "Authorised signatory")
-
         self.c.showPage()
 
     def save_pdf(self):
