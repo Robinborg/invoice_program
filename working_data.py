@@ -25,9 +25,10 @@ class FetchAndTransform:
             ]
         return table_data
 
-    def adding_customer_details(self, customer=0):
-        pass
-
+    def adding_customer_details(self, customer_name: str=None, customer_address: str=None, customer_phone: int=0):
+        customer_details = {"Name": [customer_name], "Address": [customer_address], "Phone number": [customer_phone]}
+        self.customers.append(customer_details, ignore_index=True)
+        self.customers.to_sql("customers", self.engine, if_exists="replace")
 
     def adding_to_database(self, new_product=None, new_customer=None):
         if new_product:
@@ -36,17 +37,8 @@ class FetchAndTransform:
             self.products_combined = pd.DataFrame({"name": [self.product_name], "product number": [self.product_number]})
             self.products.append(self.products_combined, ignore_index=True)
             self.products.to_sql("products", self.engine, if_exists="replace")
-
-        elif new_customer:
-            self.customer_number = self.customers.iloc[-1, -1] + 1
-            self.customer_name = new_customer
-            self.customers_combined = pd.DataFrame({"name": [self.customer_name], "customer number": [self.customer_number]})
-            self.customers.append(self.customers_combined, ignore_index=True)
-            self.customers.to_sql("customers", self.engine, if_exists="replace")
-
-
         else:
-            print("Enter product=your_choice or customer = your_choice")
+            print("Enter product=your_choice")
 
     def removing_row(self, remove_product=None, remove_customer=None, delete_all=None):
         '''removing products or customers'''
