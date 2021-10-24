@@ -6,18 +6,20 @@ from reportlab.lib import colors
 from datetime import datetime
 import numpy as np
 import pandas as pd
+from typing import List
 
 
 
 class InvoiceTemplate:
-    def __init__(self, invoice_number):
-        '''Start canvas'''
+    def __init__(self, invoice_number: int):
+        """Start the template with a Canvas and get the today's date"""
         self.PAGE_SIZE = (595.27, 841.90)
         self.c = canvas.Canvas(invoice_number + ".pdf", pagesize=self.PAGE_SIZE, bottomup=0)
         self.width, self.height = A4
         self.date = datetime.today().strftime('%d-%m-%Y')
 
-    def make_data_table(self, data_table):
+    def make_data_table(self, data_table: List):
+        """Create the Table for the products"""
         self.style = TableStyle([
             ('BOX', (0,0), (-1,-1), 0.25, colors.black),
             ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
@@ -27,8 +29,8 @@ class InvoiceTemplate:
             ])
         self.table = Table(data_table, style=self.style)
 
-    def create_document(self, product=None, customer=None):
-        '''template invoice'''
+    def create_document(self, product: str=None, customer: str=None):
+        """Create the invoice canvas"""
         #Information section
         self.c.translate(10, 40)
         self.c.scale(1, -1)
