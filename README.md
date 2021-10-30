@@ -1,4 +1,4 @@
-# Customer and products management software
+# Customer and product management software
 I was working in a supplychain company and they were looking for a simple software to keep track of products, customers and invoices. I decided this was something I could build, modify and scale at the will of the company.
 
 Below I have written the components that are a part of this software.
