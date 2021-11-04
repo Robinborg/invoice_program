@@ -1,18 +1,14 @@
 # Customer and product management software
-I was working in a supply chain company and they were looking for a simple software to keep track of products, customers and invoices. I decided this was something I could build, modify and scale at the will of the company.
+The supply chain company I was working for needed a software to handle products and customers. I saw my opportunity and built the program myself.
 
-Below I have written the components that are a part of this software.
 
 ## Invoice.py
-Holds the general layout for the pdf
-
-Takes as input the Table for products and customer details
+The invoice module contains the layout for the PDF and asks as input a product table and customer details. 
+It saves PDFs in the working directory.
 
 ## working_data.py
-Retrieves the data from the sqlite database with the help of sqlalchemy
-
-Outputs the products the user specifys as a table
+The working data module contains the connection to the database and retrieves the information that the user specifies.
+The program outputs product table and customer details.
 
 ## main.py
-Takes the users input to retrieve, print or modify information from invoice.py and/or working_data.py
-
+The main module combines the invoice module and working data module. The user can easily input commands to get information from working data module and save it to the invoice module, which prints the invoice as a PDF into the working directory.
