@@ -11,6 +11,7 @@ from typing import List
 
 
 class InvoiceTemplate:
+    """The invoice template"""
     def __init__(self, invoice_number: int):
         """Start the template with a Canvas and get the today's date"""
         self.PAGE_SIZE = (595.27, 841.90)
@@ -29,29 +30,29 @@ class InvoiceTemplate:
             ])
         self.table = Table(data_table, style=self.style)
 
-    def create_document(self, product: str=None, customer: str=None):
+    def create_document(self, invoice_number=0, customer_name: str = None, customer_phone: int = 0):
         """Create the invoice canvas"""
         #Information section
         self.c.translate(10, 40)
         self.c.scale(1, -1)
         self.c.scale(1, -1)
         self.c.setFont("Helvetica-Bold", 5)
-        self.c.drawCentredString(30, 0, "Company Ab Oy")
+        self.c.drawCentredString(30, -1, "Company Ab Oy")
         self.c.setFont("Helvetica-Bold", 2)
-        self.c.drawCentredString(30, 2, "Address xyz")
-        self.c.drawCentredString(30, 6, "Postal number 123")
+        self.c.drawCentredString(30, 2, "Address: company's street 1")
+        self.c.drawCentredString(30, 6, "Postal: number 123")
         self.c.setFont("Helvetica-Bold", 2)
-        self.c.drawCentredString(30, 10, "Business ID: ")
+        self.c.drawCentredString(30, 10, "Business ID: 999999-9")
         self.c.line(5, 15, 250, 15)
         #Middle section 
         self.c.setFont("Courier-Bold", 10)
         self.c.drawCentredString(80, -10, "Invoice")
         self.c.roundRect(5, 23, 170, 40, 10, stroke=1, fill=0)
         self.c.setFont("Times-Bold", 3)
-        self.c.drawRightString(45, 30, "Invoice number: " )
+        self.c.drawRightString(45, 30, f"Invoice number: {invoice_number}" )
         self.c.drawRightString(45, 40, f"Date: {self.date} ")
-        self.c.drawRightString(45, 50, "Customer name: ")
-        self.c.drawRightString(45, 60, "Phone number: ")
+        self.c.drawRightString(45, 50, f"Customer name: {customer_name} ")
+        self.c.drawRightString(45, 60, f"Phone number: {customer_phone}")
         #Table
         table_info = self.table
         table_info.wrapOn(self.c, self.width, self.height)
@@ -66,6 +67,6 @@ class InvoiceTemplate:
         self.c.showPage()
 
     def save_pdf(self):
+        """Saves the pdf to the project folder"""
         self.c.save()
-
 

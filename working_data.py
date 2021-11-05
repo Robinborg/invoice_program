@@ -1,26 +1,34 @@
-#Fetch information from database and output information required for the invoice
-
+from typing import List
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
-from typing import List
+from itertools import chain
 
 
 class FetchAndTransform:
+    """Open connection to products_database and customers_database"""
     def __init__(self):
         """Creating the engine and loading the current products and customers"""
         self.engine = create_engine('sqlite:///invoice.db')
         self.products = pd.read_sql('products', self.engine)
         self.customers = pd.read_sql('customers', self.engine)
 
-    def working_table(self):
+    def working_customer_info(self, select_index: int = 0) -> List:
+        """Retrieve customer info from database and return a list"""
+        customer_info = self.customers.iloc[[select_index]]
+        convert_customer_info = customer_info.values.tolist()
+        flatten_list = lambda x: [i for row in x for i in row]
+        flatten_customer_info = flatten_list(convert_customer_info)
+        return flatten_customer_info
+
+    def working_table(self, select_index: int = 0):
         """loading the data into a table for the invoice"""
-        add_table_products = self.products.iloc[0]
+        add_table_products = self.products.iloc[select_index]
         converted_list = add_table_products.values.tolist()
         strings_list = [str(x) for x in converted_list]
         table_data = [
-                strings_list,
-            ['Serial', 'Goods and description', 'Rate', 'Total'],       
+               strings_list,
+            ['Serial', 'Goods and description', 'Rate', 'Total'],
             ]
         return table_data
 
@@ -30,7 +38,7 @@ class FetchAndTransform:
         self.customer_address = customer_address
         self.customer_phone = customer_phone
         self.customer_details = pd.DataFrame({"Name": [customer_name], "Address": [customer_address], "Phone number": [customer_phone]})
-        self.customer_details.to_sql("customers", self.engine, if_exists="replace", index=False)
+        self.customer_details.to_sql("customers", self.engine, if_exists="append", index=False)
 
     def adding_product_details(self, serial: int=None, description: str=None,
                            rate: int=None):
@@ -39,7 +47,7 @@ class FetchAndTransform:
         self.description = description
         self.rate = rate
         self.products_details = pd.DataFrame({"serial": [self.serial], "goods and description": [self.description], "rate": [self.rate]})
-        self.products_details.to_sql("products", self.engine, if_exists="replace", index=False)
+        self.products_details.to_sql("products", self.engine, if_exists="append", index=False)
 
     def removing_row(self, remove_product: str=None, remove_customer: str=None, delete_all: str=None):
         """Removing products or customers"""
