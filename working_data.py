@@ -21,14 +21,18 @@ class FetchAndTransform:
         flatten_customer_info = flatten_list(convert_customer_info)
         return flatten_customer_info
 
-    def working_table(self, select_index: int = 0):
+    def working_table(self, select_index: int = 0, quantity: int = 0):
         """loading the data into a table for the invoice"""
         add_table_products = self.products.iloc[select_index]
         converted_list = add_table_products.values.tolist()
+        total = str(quantity * converted_list[-1])
+        quantity = str(quantity)
         strings_list = [str(x) for x in converted_list]
+        strings_list.append(quantity)
+        strings_list.append(total)
         table_data = [
                strings_list,
-            ['Serial', 'Goods and description', 'Rate', 'Total'],
+            ['Serial', 'Goods and description', 'Rate', 'Quantity', 'Total'],
             ]
         return table_data
 
