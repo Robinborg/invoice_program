@@ -12,3 +12,5 @@ The program outputs product table and customer details.
 
 ## main.py
 The main module combines the invoice module and working data module. The user can easily input commands to get information from working data module and save it to the invoice module, which prints the invoice as a PDF into the working directory.
+
+![invoice_image](https://github.com/Robinborg/images/blob/main/Screenshot%202021-11-07%20at%2009.56.17.png?raw=true)
