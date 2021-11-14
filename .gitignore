@@ -1,5 +1,7 @@
 __pycache__
 *.pyc
-logistics_env
+venv
 .DS_Store
+invoice.db
+
 
