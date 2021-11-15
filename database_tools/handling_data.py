@@ -2,10 +2,9 @@ from typing import List
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
-from itertools import chain
 
 
-class FetchAndTransform:
+class DataHandler:
     """Open connection to products_database and customers_database"""
     def __init__(self):
         """Creating the engine and loading the current products and customers"""
@@ -21,7 +20,7 @@ class FetchAndTransform:
         flatten_customer_info = flatten_list(convert_customer_info)
         return flatten_customer_info
 
-    def working_table(self, select_index: int = 0, quantity: int = 0):
+    def creating_table(self, select_index: int = 0, quantity: int = 0):
         """loading the data into a table for the invoice"""
         add_table_products = self.products.iloc[select_index]
         converted_list = add_table_products.values.tolist()
@@ -30,11 +29,11 @@ class FetchAndTransform:
         strings_list = [str(x) for x in converted_list]
         strings_list.append(quantity)
         strings_list.append(total)
-        table_data = [
+        product_table = [
                strings_list,
             ['Serial', 'Goods and description', 'Rate', 'Quantity', 'Total'],
             ]
-        return table_data
+        return product_table
 
     def adding_customer_details(self, customer_name: str=None, customer_address: str=None, customer_phone: int=0):
         """Adding a new customer to the database"""

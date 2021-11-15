@@ -1,14 +1,14 @@
 '''Generate invoices'''
 
 from invoice import InvoiceTemplate
-from handling_data import FetchAndTransform
+from database_tools.handling_data import DataHandler
 import sys
 
 #Make default number
 if __name__ == "__main__":
     first_invoice = InvoiceTemplate("2")
-    modify_data = FetchAndTransform()
-    make_table = modify_data.working_table(select_index=1, quantity=2)
+    modify_data = DataHandler()
+    make_table = modify_data.creating_table(select_index=1, quantity=2)
     #print(make_table)
     first_invoice.make_data_table(make_table)
     #modify_data.removing_row(delete_all=False)
