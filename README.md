@@ -1,5 +1,5 @@
 # Customer and product management software
-The supply chain company I was working for needed a software to handle products and customers. I saw my opportunity and built the program myself.
+Make your own invoices.
 
 
 ## Invoice.py
