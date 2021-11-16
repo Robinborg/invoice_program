@@ -2,6 +2,8 @@
 
 from invoice import InvoiceTemplate
 from database_tools.handling_data import DataHandler
+from models.customer import Customer
+from models.product import Product
 import sys
 
 #Make default number
