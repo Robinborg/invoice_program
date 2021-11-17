@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
-class Products:
+class Products(Base):
     __tablename__ = 'Products'
     id = Column(Integer, primary_key=True)
     description = Column(String(250), nullable=False)
