@@ -1,13 +1,31 @@
 '''Generate invoices'''
 
-from invoice import InvoiceTemplate
-from database_tools.handling_data import DataHandler
-from models.customer import Customer
-from models.product import Product
-import sys
+#from invoice import InvoiceTemplate
+#from database_tools.handling_data import DataHandler
+#from models.customegreetingr import Customer
+#from models.product import Product
+#import sys
+from utils.mode_message import choose_mode
+from utils.product_messages import product_menu, enter_product, display_all_products, display_product, modify_product
+from utils.customer_messages import customer_menu, enter_customer, display_all_customers, display_customer, modify_customer, delete_customer
+from utils.invoice_messages import invoice_menu
 
 #Make default number
 if __name__ == "__main__":
+    choose_mode()
+    product_menu()
+    enter_product()
+    display_all_products()
+    display_product()
+    modify_product()
+    customer_menu()
+    enter_customer()
+    display_all_customers()
+    display_customer()
+    modify_customer()
+    delete_customer()
+    invoice_menu()
+
 """
 Displays to the user options for the commands
 1. Enter a new product
@@ -22,14 +40,33 @@ Program checks it's a valid command
   Wrong input: error and reprint the options
   Right input: ->
 
-Enter new product: 
+1.Enter new product: 
     Displays the sample of a product entry
     For each product field:
         prompt user for field
         if it's wrong: reprompt
-        if it's right: next field
-    user can confirm
+        elif it's right: next field
+    user confirms addition
+2. Display a product
+    Displays options for searching a product
+        - by name
+        - by index
+    prompt user for input
+        if it's wrong: reprompt
+        elif right: show product the user requested
+3. Display all products
+    Display command for showing all products
+    prompt user for input
+        if wrong: reprompt
+        elif right: show all products
+4. delete a product
+    Display command for deleting a product
+    prompt user for input:
+        if wrong: reprompt
+        elif right: ask user to verify deletion
+    user verifies deletion.
 """
+
 
 
 
@@ -85,12 +122,12 @@ Enter new product:
 #    first_invoice = InvoiceTemplate("2")
 #    modify_data = DataHandler()
 #    make_table = modify_data.creating_table(select_index=1, quantity=2)
-#    #print(make_table)
+#    print(make_table)
 #    first_invoice.make_data_table(make_table)
-#    #modify_data.removing_row(delete_all=False)
-#    #modify_data.adding_customer_details("George", "Starbase", 9999)
-#    #modify_data.adding_product_details(serial=100, description="Hammer", rate=15)
-#    #modify_data.show_table()
+#    modify_data.removing_row(delete_all=False)
+#    modify_data.adding_customer_details("George", "Starbase", 9999)
+#    modify_data.adding_product_details(serial=100, description="Hammer", rate=15)
+#    modify_data.show_table()
 #    customer_details = modify_data.working_customer_info(1)
 #    first_invoice.create_document(invoice_number=2,
 #            customer_name = customer_details[0], customer_phone = customer_details[2])
