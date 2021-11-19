@@ -1,4 +1,5 @@
 from models.product import Product
+from handlers import Session
 
 class ProductHandler:
     def __init__(self):
@@ -17,4 +18,9 @@ class ProductHandler:
 
     def search(self, looking_for):
         self.session.query(products).get(looking_for)
+
+
+with Session.begin() as sessions:
+    session.add()
+    session.commit()
 
