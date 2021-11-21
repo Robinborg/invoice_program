@@ -1,26 +1,29 @@
-from models.product import Product
+from sqlalchemy import select
+
 from handlers import Session
 
-class ProductHandler:
-    def __init__(self):
-        #Start session here?
-        engine = #Get from function?
-        self.session = engine
 
-    def get_all_products(self):
-        self.session.query(products).all()
+def adding_product(add_product, enter_session=None):
+    """Starts session to add product and automatically ends it"""
+    with Session.begin() as session:
+        session.add(add_product)
+        session.commit()
 
-    def add_one_product(self):
-        self.session.query(products).add_entity()
+def showing_all(show_all, enter_session=None):
+    """Starts session to show all products and automatically ends it"""
+    with Session.begin() as session:
+        statement = select(Product.description)
+        session.execute(statement).all()
 
-    def remove(self):
-        self.session.query(products).delete()
+def removing_product(remove_product, enter_session=None):
+    """Starts session to remove product and automatically ends it"""
+    with Session.begin() as session:
+        session.delete(remove_product)
+        session.commit()
 
-    def search(self, looking_for):
-        self.session.query(products).get(looking_for)
-
-
-with Session.begin() as sessions:
-    session.add()
-    session.commit()
+def show_product(search_product, enter_session=None):
+    """Starts session to show a product and automatically ends it"""
+    with Session.begin() as session:
+        statement = select(Product).filter_by(first_name=search_product)
+        session.execute(statement).all()
 
