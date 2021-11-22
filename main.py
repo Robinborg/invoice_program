@@ -2,29 +2,34 @@
 
 #from invoice import InvoiceTemplate
 #from database_tools.handling_data import DataHandler
-#from models.customegreetingr import Customer
-#from models.product import Product
 #import sys
 from utils.mode_message import choose_mode
 from utils.product_messages import product_menu, enter_product, display_all_products, display_product, modify_product
 from utils.customer_messages import customer_menu, enter_customer, display_all_customers, display_customer, modify_customer, delete_customer
 from utils.invoice_messages import invoice_menu
+from handlers.customer_handler import adding_customer, all_customers, removing_customer, show_customer
 
-#Make default number
+from models.customer import Base
+
 if __name__ == "__main__":
-    choose_mode()
-    product_menu()
-    enter_product()
-    display_all_products()
-    display_product()
-    modify_product()
-    customer_menu()
-    enter_customer()
-    display_all_customers()
-    display_customer()
-    modify_customer()
-    delete_customer()
-    invoice_menu()
+    #choose_mode()
+
+    #adding_customer(Customer(first_name='Jay', last_name='Bird', address='Coockoo', phone='44444444'))
+    all_customers() 
+    removing_customer('Jay')
+
+    #product_menu()
+    #enter_product()
+    #display_all_products()
+    #display_product()
+    #modify_product()
+    #customer_menu()
+    #enter_customer()
+    #display_all_customers()
+    #display_customer()
+    #modify_customer()
+    #delete_customer()
+    #invoice_menu()
 
 """
 Displays to the user options for the commands

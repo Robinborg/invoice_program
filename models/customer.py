@@ -7,7 +7,9 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 class Customer(Base):
+    """Declare base for Customer class"""
     __tablename__ = 'Customers'
+
     id = Column(Integer, primary_key=True)
     first_name = Column(String(250), nullable=False)
     last_name = Column(String(250), nullable=False)
