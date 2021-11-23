@@ -9,14 +9,19 @@ from utils.customer_messages import customer_menu, enter_customer, display_all_c
 from utils.invoice_messages import invoice_menu
 from handlers.customer_handler import adding_customer, all_customers, removing_customer, show_customer
 
-from models.customer import Base
+from models.customer import Customer
 
 if __name__ == "__main__":
     #choose_mode()
-
-    #adding_customer(Customer(first_name='Jay', last_name='Bird', address='Coockoo', phone='44444444'))
-    all_customers() 
-    removing_customer('Jay')
+   # adding_customer(Customer(first_name='bob', last_name='Bird',\
+   #     address='Coockoo', phone='44444444'))
+    all_customers()
+    #removing_customer(delete_customer='bob')
+    print("After all")
+    show_customer('jay')
+    #prin("New")
+    #show_customer()
+    #testing()
 
     #product_menu()
     #enter_product()

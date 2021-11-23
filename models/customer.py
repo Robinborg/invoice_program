@@ -17,7 +17,7 @@ class Customer(Base):
     phone = Column(String(250), nullable=False)
 
 #To be ran only once
-engine = create_engine("sqlite:///invoices.db")
-#To be ran only once
+#engine = create_engine("sqlite:///invoices.db")
+#T be ran only once
 #Create the table
-Base.metadata.create_all(engine)
+#Base.metadata.create_all(engine)

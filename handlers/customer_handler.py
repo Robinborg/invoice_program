@@ -1,6 +1,5 @@
-from sqlalchemy import select
+from sqlalchemy import select, delete, update
 from models.customer import Customer
-from models.customer import Base
 from handlers import Session
 
 
@@ -15,18 +14,24 @@ def all_customers():
     with Session.begin() as session:
         statement = select(Customer.first_name)
         result = session.execute(statement).all()
+        count = 0
         for row in result:
             print(row)
+            print(count)
+            count += 1
 
-def removing_customer(remove_customer):
+def removing_customer(delete_customer: str = None):
     """Starts session to remove customer and automatically ends it"""
     with Session.begin() as session:
-        session.execute(Customer.first_name.delete())
-        session.commit(stmt)
+        stmt = delete(Customer).where(Customer.first_name == delete_customer).\
+                execution_options(synchronize_session='fetch')
+        session.execute(stmt)
 
 def show_customer(search_customer):
     """Starts session to show a customer and automatically ends it"""
     with Session.begin() as session:
-        statement = select(Customer).filter_by(first_name=search_customer)
-        session.execute(statement).all()
+        stmt = select(Customer).where(Customer.first_name == search_customer).\
+                execution_options(synchronize_session='fetch')
+        result = session.execute(stmt).all()
+        print(result)
 
