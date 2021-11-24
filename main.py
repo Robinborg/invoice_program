@@ -13,12 +13,11 @@ from models.customer import Customer
 
 if __name__ == "__main__":
     #choose_mode()
-   # adding_customer(Customer(first_name='bob', last_name='Bird',\
-   #     address='Coockoo', phone='44444444'))
+    #adding_customer(Customer(first_name='bob', last_name='Bird',\
+    #    address='Coockoo', phone='44444444'))
     all_customers()
-    #removing_customer(delete_customer='bob')
-    print("After all")
-    show_customer('jay')
+    #removing_customer(delete_customer='Jay')
+    #show_customer('Jay')
     #prin("New")
     #show_customer()
     #testing()
