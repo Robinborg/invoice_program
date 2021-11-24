@@ -8,73 +8,16 @@ from utils.product_messages import product_menu, enter_product, display_all_prod
 from utils.customer_messages import customer_menu, enter_customer, display_all_customers, display_customer, modify_customer, delete_customer
 from utils.invoice_messages import invoice_menu
 from handlers.customer_handler import adding_customer, all_customers, removing_customer, show_customer
-
 from models.customer import Customer
+from handlers.product_handler import adding_product, all_products, removing_product, show_product
+from models.product import Product
+
 
 if __name__ == "__main__":
     #choose_mode()
-    #adding_customer(Customer(first_name='bob', last_name='Bird',\
-    #    address='Coockoo', phone='44444444'))
-    all_customers()
-    #removing_customer(delete_customer='Jay')
-    #show_customer('Jay')
-    #prin("New")
-    #show_customer()
-    #testing()
+    adding_product(Product(description="Hammer", price=12))
+    all_products()
 
-    #product_menu()
-    #enter_product()
-    #display_all_products()
-    #display_product()
-    #modify_product()
-    #customer_menu()
-    #enter_customer()
-    #display_all_customers()
-    #display_customer()
-    #modify_customer()
-    #delete_customer()
-    #invoice_menu()
-
-"""
-Displays to the user options for the commands
-1. Enter a new product
-2. Display a product
-3. Display all products
-3. Modify a product
-4. Delete a product
-"""
-"""User enters command 
-
-Program checks it's a valid command
-  Wrong input: error and reprint the options
-  Right input: ->
-
-1.Enter new product: 
-    Displays the sample of a product entry
-    For each product field:
-        prompt user for field
-        if it's wrong: reprompt
-        elif it's right: next field
-    user confirms addition
-2. Display a product
-    Displays options for searching a product
-        - by name
-        - by index
-    prompt user for input
-        if it's wrong: reprompt
-        elif right: show product the user requested
-3. Display all products
-    Display command for showing all products
-    prompt user for input
-        if wrong: reprompt
-        elif right: show all products
-4. delete a product
-    Display command for deleting a product
-    prompt user for input:
-        if wrong: reprompt
-        elif right: ask user to verify deletion
-    user verifies deletion.
-"""
 
 
 
