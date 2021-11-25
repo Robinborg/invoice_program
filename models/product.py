@@ -10,7 +10,7 @@ class Product(Base):
 
     id = Column(Integer, primary_key=True)
     description = Column(String(250), nullable=False)
-    price = Column(Numeric, nullable=False)
+    price = Column(String(500))
 
 #To be ran only once
 engine = create_engine("sqlite:///invoices.db")

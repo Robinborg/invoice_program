@@ -12,26 +12,23 @@ def adding_customer(add_customer):
 def all_customers():
     """Starts session to show all customers and automatically ends it"""
     with Session.begin() as session:
-        statement = select(Customer.first_name, Customer.last_name,\
+        statement = select(Customer.name,\
                 Customer.address, Customer.phone)
         result = session.execute(statement).all()
-        count = 0
         for row in result:
             print(row)
-            print(count)
-            count += 1
 
 def removing_customer(delete_customer: str = None):
     """Starts session to remove customer and automatically ends it"""
     with Session.begin() as session:
-        stmt = delete(Customer).where(Customer.first_name == delete_customer).\
+        stmt = delete(Customer).where(Customer.name == delete_customer).\
                 execution_options(synchronize_session='fetch')
         session.execute(stmt)
 
 def show_customer(search_customer):
     """Starts session to show a customer and automatically ends it"""
     with Session.begin() as session:
-        stmt = select(Customer.first_name).filter_by(first_name=search_customer)
+        stmt = select(Customer.name).filter_by(name=search_customer)
 
         result = session.execute(stmt).all()
 

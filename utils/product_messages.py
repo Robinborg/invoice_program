@@ -2,12 +2,8 @@
 
 def product_menu():
     """Display options for product mode"""
-    print("\n")
-    print("\t\tChoose from the options:\n")
-    print("\t\t(1). Enter a new product\n")
-    print("\t\t(2). Display all products\n")
-    print("\t\t(3). Display a product\n")
-    print("\t\t(4). Delete a product\n")
+    product_menu = input("\t\tChoose from the options:\n\t\t(1). Enter a new product\n\t\t(2). Display all products\n\t\t(3). Display a product\n\t\t(4). Delete a product\n\t\t(q). quit\n")
+    return product_menu
 
 def enter_product():
     """Shows how to enter a new product"""

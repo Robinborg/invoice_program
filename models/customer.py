@@ -11,13 +11,12 @@ class Customer(Base):
     __tablename__ = 'Customers'
 
     id = Column(Integer, primary_key=True)
-    first_name = Column(String(250), nullable=False)
-    last_name = Column(String(250), nullable=False)
+    name = Column(String(250), nullable=False)
     address = Column(String(500), nullable=False)
     phone = Column(String(250), nullable=False)
 
 #To be ran only once
-#engine = create_engine("sqlite:///invoices.db")
-#T be ran only once
+engine = create_engine("sqlite:///invoices.db")
+#To be ran only once
 #Create the table
-#Base.metadata.create_all(engine)
+Base.metadata.create_all(engine)

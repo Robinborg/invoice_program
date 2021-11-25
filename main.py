@@ -3,7 +3,6 @@
 #from invoice import InvoiceTemplate
 #from database_tools.handling_data import DataHandler
 #import sys
-from utils.mode_message import choose_mode
 from utils.product_messages import product_menu, enter_product, display_all_products, display_product, modify_product
 from utils.customer_messages import customer_menu, enter_customer, display_all_customers, display_customer, modify_customer, delete_customer
 from utils.invoice_messages import invoice_menu
@@ -14,9 +13,49 @@ from models.product import Product
 
 
 if __name__ == "__main__":
-    #choose_mode()
-    adding_product(Product(description="Hammer", price=12))
-    all_products()
+    choosing_mode = input("\t\tEnter:\n\t\t(1). Product mode\n\t\t(2). Customer mode\n\t\t(3). Invoice mode\n")
+    if choosing_mode == '1':
+        while True:
+            chosen_menu = product_menu()
+            if chosen_menu == 'q':
+                break
+            elif chosen_menu == '1':
+                product_description = input("\t\tEnter product description\n")
+                product_price = input("\t\tEnter product price\n")
+                new_product = Product(description=product_description, price=product_price)
+                adding_product(new_product)
+            elif chosen_menu == '2':
+                all_products()
+            elif chosen_menu == '3':
+                search_product = input("\t\tSearch for a product by description\n")
+                show_product(search_product)
+            elif chosen_menu == '4':
+                remove_product = input("\t\tRemove a product by description\n")
+                removing_product(remove_product) 
+
+    elif choosing_mode == '2':
+        while True:
+            chosen_menu = customer_menu()
+            if chosen_menu == 'q':
+                break
+            elif chosen_menu == '1':
+                customer_name= input("\t\tEnter customer name\n")
+                customer_address = input("\t\tEnter customer address\n")
+                customer_phone = input("\t\tEnter customer phone\n")
+                new_customer = Customer(name=customer_name, address=customer_address, phone=customer_phone)
+                adding_customer(new_customer)
+            elif chosen_menu == '2':
+                all_customers()
+            elif chosen_menu == '3':
+                search_customer = input("\t\tSearch for a customer by name\n")
+                show_product(search_customer)
+            elif chosen_menu == '4':
+                remove_customer = input("\t\tRemove a customer by name\n")
+                removing_customer(remove_customer) 
+
+    elif choosing_mode == '3':
+        pass
+
 
 
 
