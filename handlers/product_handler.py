@@ -30,4 +30,13 @@ def show_product(search_product):
         stmt = select(Product.description).filter_by(description=search_product)
         result = session.execute(stmt).all()
         print(result)
+        return result
+
+def get_product(product):
+    """Starts session to show a product and automatically ends it"""
+    with Session.begin() as session:
+        stmt = select(Product.description, Product.price).filter_by(description=product)
+        result = session.execute(stmt).all()
+    return result
+        
 

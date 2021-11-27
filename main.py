@@ -3,17 +3,19 @@
 #from invoice import InvoiceTemplate
 #from database_tools.handling_data import DataHandler
 #import sys
-from utils.product_messages import product_menu, enter_product, display_all_products, display_product, modify_product
-from utils.customer_messages import customer_menu, enter_customer, display_all_customers, display_customer, modify_customer, delete_customer
-from utils.invoice_messages import invoice_menu
+from utils.product_messages import product_menu
+from utils.customer_messages import customer_menu
+from utils.invoice_menu import invoice_creation, interface
+from utils.create_table import adding_products
+from handlers.product_handler import adding_product, all_products, removing_product, show_product, get_product
 from handlers.customer_handler import adding_customer, all_customers, removing_customer, show_customer
 from models.customer import Customer
-from handlers.product_handler import adding_product, all_products, removing_product, show_product
 from models.product import Product
 
 
 if __name__ == "__main__":
-    choosing_mode = input("\t\tEnter:\n\t\t(1). Product mode\n\t\t(2). Customer mode\n\t\t(3). Invoice mode\n")
+    choosing_mode = input("\t\tEnter:\n\t\t(1). Product mode\n\t\t"\
+            "(2). Customer mode\n\t\t(3). Make invoice\n\t\t(q). Quit\n")
     if choosing_mode == '1':
         while True:
             chosen_menu = product_menu()
@@ -31,7 +33,10 @@ if __name__ == "__main__":
                 show_product(search_product)
             elif chosen_menu == '4':
                 remove_product = input("\t\tRemove a product by description\n")
-                removing_product(remove_product) 
+                removing_product(remove_product)
+            else:
+                print("You did not ener 1, 2, 3 or 4")
+
 
     elif choosing_mode == '2':
         while True:
@@ -42,7 +47,8 @@ if __name__ == "__main__":
                 customer_name= input("\t\tEnter customer name\n")
                 customer_address = input("\t\tEnter customer address\n")
                 customer_phone = input("\t\tEnter customer phone\n")
-                new_customer = Customer(name=customer_name, address=customer_address, phone=customer_phone)
+                new_customer = Customer(name=customer_name, address=customer_address,\
+                        phone=customer_phone)
                 adding_customer(new_customer)
             elif chosen_menu == '2':
                 all_customers()
@@ -51,11 +57,18 @@ if __name__ == "__main__":
                 show_product(search_customer)
             elif chosen_menu == '4':
                 remove_customer = input("\t\tRemove a customer by name\n")
-                removing_customer(remove_customer) 
+                removing_customer(remove_customer)
+            else:
+                print("You did not ener 1, 2, 3 or 4")
 
     elif choosing_mode == '3':
-        pass
+        products = interface()
+        print(products)
 
+    elif choosing_mode == 'q':
+        pass
+    else:
+        print("You did not enter the right mode. Rerun the program and choose 1, 2, 3 or q to quit")
 
 
 

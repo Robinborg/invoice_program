@@ -29,8 +29,7 @@ def show_customer(search_customer):
     """Starts session to show a customer and automatically ends it"""
     with Session.begin() as session:
         stmt = select(Customer.name).filter_by(name=search_customer)
-
         result = session.execute(stmt).all()
-
         print(result)
+        return result
 
