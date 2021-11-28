@@ -1,8 +1,8 @@
 '''Generate invoices'''
 
-#from invoice import InvoiceTemplate
+from invoice import InvoiceTemplate
 #from database_tools.handling_data import DataHandler
-#import sys
+import itertools
 from utils.product_messages import product_menu
 from utils.customer_messages import customer_menu
 from utils.invoice_menu import invoice_creation, interface
@@ -63,7 +63,15 @@ if __name__ == "__main__":
 
     elif choosing_mode == '3':
         products = interface()
-        print(products)
+        #flatten once from List[List[Tuple[str]]
+        flatten_products = list(itertools.chain.from_iterable(products))
+        #flatten twice from List[Tuple[str]]
+        #flatten_2 = [item for sublist in flatten_products for item in sublist]
+        #Make quantity function to calculate apperance in flatten_2
+        making_invoice = InvoiceTemplate("100")
+        making_invoice.make_data_table(flatten_products)
+        making_invoice.create_document("Clark", 9876)
+        making_invoice.save_pdf()
 
     elif choosing_mode == 'q':
         pass

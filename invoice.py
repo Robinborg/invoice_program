@@ -4,8 +4,6 @@ from reportlab.platypus import  Paragraph, Table, TableStyle
 from reportlab.lib.units import cm, mm
 from reportlab.lib import colors
 from datetime import datetime
-import numpy as np
-import pandas as pd
 from typing import List
 
 
