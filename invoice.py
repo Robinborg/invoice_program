@@ -44,7 +44,7 @@ class InvoiceTemplate:
         self.c.drawCentredString(130, 40, "Postal: number 123")
         self.c.setFont("Helvetica-Bold", 15)
         self.c.drawCentredString(130, 60, "Business ID: 999999-9")
-        #Middle section 
+        #Middle section
         self.c.roundRect(5, 80, 570, 100, 10, stroke=1, fill=0)
         self.c.setFont("Times-Bold", 12)
         self.c.drawRightString(200, 100, f"Invoice number: {invoice_number}" )
@@ -64,4 +64,3 @@ class InvoiceTemplate:
     def save_pdf(self):
         """Saves the pdf to the project folder"""
         self.c.save()
-

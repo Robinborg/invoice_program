@@ -12,7 +12,7 @@ def adding_product(add_product):
 def all_products():
     """Starts session to show all products and automatically ends it"""
     with Session.begin() as session:
-        statement = select(Product.description, Product.price)
+        statement = select(Product.serial, Product.description, Product.price)
         result = session.execute(statement).all()
         for row in result:
             print(row)
@@ -30,12 +30,11 @@ def show_product(search_product):
         stmt = select(Product.description).filter_by(description=search_product)
         result = session.execute(stmt).all()
         print(result)
-        return result
 
 def get_product(product):
     """Starts session to show a product and automatically ends it"""
     with Session.begin() as session:
-        stmt = select(Product.description, Product.price).filter_by(description=product)
+        stmt = select(Product.serial, Product.description, Product.price).filter_by(description=product)
         result = session.execute(stmt).all()
     return result
         

@@ -1,11 +1,11 @@
 '''Generate invoices'''
 
+import itertools
 from invoice import InvoiceTemplate
 #from database_tools.handling_data import DataHandler
-import itertools
-from utils.product_messages import product_menu
-from utils.customer_messages import customer_menu
-from utils.invoice_menu import invoice_creation, interface
+from interface.product_menus import product_menu, calculate_quantity
+from interface.customer_menus import customer_menu
+from interface.invoice_menus import interface
 from utils.create_table import adding_products
 from handlers.product_handler import adding_product, all_products, removing_product, show_product, get_product
 from handlers.customer_handler import adding_customer, all_customers, removing_customer, show_customer
@@ -22,9 +22,11 @@ if __name__ == "__main__":
             if chosen_menu == 'q':
                 break
             elif chosen_menu == '1':
+                product_serial = input("\t\tEnter product serial\n")
                 product_description = input("\t\tEnter product description\n")
                 product_price = input("\t\tEnter product price\n")
-                new_product = Product(description=product_description, price=product_price)
+                new_product = Product(serial = product_serial, description=product_description,\
+                        price=product_price)
                 adding_product(new_product)
             elif chosen_menu == '2':
                 all_products()
@@ -35,7 +37,7 @@ if __name__ == "__main__":
                 remove_product = input("\t\tRemove a product by description\n")
                 removing_product(remove_product)
             else:
-                print("You did not ener 1, 2, 3 or 4")
+                print("You did not ener 1, 2, 3 or 4")                                      
 
 
     elif choosing_mode == '2':
@@ -63,14 +65,23 @@ if __name__ == "__main__":
 
     elif choosing_mode == '3':
         products = interface()
-        #flatten once from List[List[Tuple[str]]
-        flatten_products = list(itertools.chain.from_iterable(products))
-        #flatten twice from List[Tuple[str]]
+        #flatten 1 from List[List[Tuple[str]]
+        flatten_products = itertools.chain.from_iterable(products)
+        #Testing
+        listing = [list(num) for num in flatten_products]
+        #flatten 2 from List[Tuple[str]]
         #flatten_2 = [item for sublist in flatten_products for item in sublist]
+        #Calculate quantity
+        #calc = calculate_quantity(flatten_2)
+        #make into List[List[str]]
+        #nested_list = [flatten_2]
+        #print(nested_list)
+
         #Make quantity function to calculate apperance in flatten_2
+
         making_invoice = InvoiceTemplate("100")
-        making_invoice.make_data_table(flatten_products)
-        making_invoice.create_document("Clark", 9876)
+        making_invoice.make_data_table(listing)
+        making_invoice.create_document(100, "Clark", 9876)
         making_invoice.save_pdf()
 
     elif choosing_mode == 'q':
