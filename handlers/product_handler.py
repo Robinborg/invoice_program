@@ -1,6 +1,8 @@
 from sqlalchemy import select, delete, update
 from models.product import Product
 from handlers import Session
+import itertools
+from typing import List, Tuple
 
 
 def adding_product(add_product):
@@ -31,11 +33,16 @@ def show_product(search_product):
         result = session.execute(stmt).all()
         print(result)
 
+def _flatten(nums: List[List[Tuple[str]]]) -> List[str]:
+    """flatten the List[List[Tuple[str]]] from sqlalchemy"""
+    flatten_products = itertools.chain.from_iterable(nums)
+    flatten_products_2 = list(flatten_products)
+    return flatten_products_2
+
 def get_product(product):
     """Starts session to show a product and automatically ends it"""
     with Session.begin() as session:
         stmt = select(Product.serial, Product.description, Product.price).filter_by(description=product)
         result = session.execute(stmt).all()
-    return result
-        
-
+        product_list = _flatten(result)
+    return product_list 
