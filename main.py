@@ -4,7 +4,7 @@ from invoice import InvoiceTemplate
 #from database_tools.handling_data import DataHandler
 #from interface.product_menus.py import product_event_loop
 from interface.customer_menus import customer_menu
-from interface.invoice_menus import interface
+from interface.invoice_menus import product_interface, customer_interface
 from interface.product_menus import product_event_loop
 from utils.create_table import adding_products
 from handlers.product_handler import adding_product, all_products, removing_product, show_product, get_product
@@ -43,22 +43,14 @@ if __name__ == "__main__":
                 print("You did not ener 1, 2, 3 or 4")
 
     elif choosing_mode == '3':
-        products = interface()
-        print(products)
-        #flatten 1 from List[List[Tuple[str]]
-        #flatten_products = itertools.chain.from_iterable(products)
-        #Testing
-        #listing = [list(num) for num in flatten_products]
-        #print(listing)
-        #Calculate quantity
-        #calc = calculate_quantity(flatten_2)
-        #make into List[List[str]]
-
-        #Make quantity function to calculate apperance in flatten_2
+        products_list = product_interface()
+        customer_list = customer_interface()
+        print(products_list)
+        print(customer_list)
 
         making_invoice = InvoiceTemplate("100")
-        making_invoice.make_data_table(products)
-        making_invoice.create_document(100, "Clark", 9876)
+        making_invoice.make_data_table(products_list)
+        making_invoice.create_document(invoice_number = 0, customer_name = customer_list[0],customer_address = customer_list[1], customer_phone=customer_list[2])
         making_invoice.save_pdf()
 
     elif choosing_mode == 'q':

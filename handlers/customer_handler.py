@@ -1,6 +1,7 @@
 from sqlalchemy import select, delete, update
 from models.customer import Customer
 from handlers import Session
+from utils.flatten_list import flatten
 
 
 def adding_customer(add_customer):
@@ -33,3 +34,13 @@ def show_customer(search_customer):
         print(result)
         return result
 
+def get_customer(search_customer):
+    """Starts session to show a customer and automatically ends it"""
+    with Session.begin() as session:
+        stmt = select(Customer.name, Customer.address, Customer.phone).filter_by(name=search_customer)
+        result = session.execute(stmt).all()
+        customer_iterable = flatten(result)
+        print(customer_iterable)
+        customer_list = list(customer_iterable)
+        print(customer_list)
+        return customer_list

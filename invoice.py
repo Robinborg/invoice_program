@@ -29,14 +29,17 @@ class InvoiceTemplate:
         self.table = first_table
          
 
-    def create_document(self, invoice_number=0, customer_name: str = None, customer_phone: int = 0):
+    def create_document(self, invoice_number: int = 0,
+                              customer_name: str = None,
+                              customer_address=None,
+                              customer_phone=None):
         """Create the invoice canvas"""
         #Information section
         self.c.translate(10, 40)
         self.c.scale(1, -1)
         self.c.scale(1, -1)
         self.c.setFont("Helvetica-Bold", 20)
-        self.c.drawCentredString(400, 10, "Invoice")
+        self.c.drawCentredString(400, 10, f"Invoice nr: {invoice_number}")
         self.c.setFont("Helvetica-Bold", 15)
         self.c.drawCentredString(130, 1, "Company Ab Oy")
         self.c.setFont("Helvetica-Bold", 15)
@@ -47,9 +50,9 @@ class InvoiceTemplate:
         #Middle section
         self.c.roundRect(5, 80, 570, 100, 10, stroke=1, fill=0)
         self.c.setFont("Times-Bold", 12)
-        self.c.drawRightString(200, 100, f"Invoice number: {invoice_number}" )
+        self.c.drawRightString(200, 100, f"Customer name: {customer_name}" )
         self.c.drawRightString(200, 120, f"Date: {self.date} ")
-        self.c.drawRightString(200, 140, f"Customer name: {customer_name} ")
+        self.c.drawRightString(200, 140, f"Address: {customer_address} ")
         self.c.drawRightString(200, 160, f"Phone number: {customer_phone}")
         #Table
         table_info = self.table
