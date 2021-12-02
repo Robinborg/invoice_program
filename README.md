@@ -2,15 +2,4 @@
 Make your own invoices.
 
 
-## Invoice.py
-The invoice module contains the layout for the PDF and asks as input a product table and customer details. 
-It saves PDFs in the working directory.
-
-## working_data.py
-The working data module contains the connection to the database and retrieves the information that the user specifies.
-The program outputs product table and customer details.
-
-## main.py
-The main module combines the invoice module and working data module. The user can easily input commands to get information from working data module and save it to the invoice module, which prints the invoice as a PDF into the working directory.
-
 ![invoice_image](https://github.com/Robinborg/images/blob/main/Screenshot%202021-11-12%20at%2017.42.41.png?raw=true)
