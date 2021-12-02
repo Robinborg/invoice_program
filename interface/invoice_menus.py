@@ -1,6 +1,5 @@
 from handlers.product_handler import get_product
 from handlers.customer_handler import get_customer
-from typing import List
 
 def invoice_creation():
     menu = input("\t\tEnter (1). Create invoice or (q). Quit:\n")

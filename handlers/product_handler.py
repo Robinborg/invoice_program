@@ -1,13 +1,13 @@
-from sqlalchemy import select, delete, update
+from sqlalchemy import select, delete
 from models.product import Product
 from handlers import Session
 from utils.flatten_list import flatten
 
 
-def adding_product(add_product):
+def add_product(name_product):
     """Starts session to add product and automatically ends it"""
     with Session.begin() as session:
-        session.add(add_product)
+        session.add(name_product)
         session.commit()
 
 def all_products():
@@ -18,24 +18,24 @@ def all_products():
         for row in result:
             print(row)
 
-def removing_product(delete_product: str = None):
+def remove_product(name_product: str = None):
     """Starts session to remove product and automatically ends it"""
     with Session.begin() as session:
-        stmt = delete(Product).where(Product.description == delete_product).\
+        stmt = delete(Product).where(Product.description == name_product).\
                 execution_options(synchronize_session='fetch')
         session.execute(stmt)
 
-def show_product(search_product):
+def show_product(name_product):
     """Starts session to show a product and automatically ends it"""
     with Session.begin() as session:
-        stmt = select(Product.description).filter_by(description=search_product)
+        stmt = select(Product.description).filter_by(description=name_product)
         result = session.execute(stmt).all()
         print(result)
 
-def get_product(product):
+def get_product(name_product):
     """Starts session to show a product and automatically ends it"""
     with Session.begin() as session:
-        stmt = select(Product.serial, Product.description, Product.price).filter_by(description=product)
+        stmt = select(Product.serial, Product.description, Product.price).filter_by(description=name_product)
         result = session.execute(stmt).all()
         product_list = list(flatten(result))
     return product_list 
