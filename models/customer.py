@@ -14,6 +14,7 @@ class Customer(Base):
     name = Column(String(250), nullable=False)
     address = Column(String(500), nullable=False)
     phone = Column(String(250), nullable=False)
+    parents = relationsship("Association", back_populates="customer")
 
 #To be ran only once
 engine = create_engine("sqlite:///invoices.db")

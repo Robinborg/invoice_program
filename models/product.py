@@ -12,6 +12,7 @@ class Product(Base):
     serial = Column(String(250))
     description = Column(String(250), nullable=False)
     price = Column(String(500))
+    parents = relationship("Association", back_populates="product")
 
 #To be ran only once
 #engine = create_engine("sqlite:///invoices.db")

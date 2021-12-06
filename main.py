@@ -6,8 +6,7 @@ from interface.customer_menus import customer_event_loop
 
 
 if __name__ == "__main__":
-    choose_mode = input("\t\tEnter:\n\t\t(1). Product mode\n\t\t"\
-            "(2). Customer mode\n\t\t(3). Make invoice\n\t\t(q). Quit\n")
+    choose_mode = input("""\t\tEnter:\n\t\t(1). Product mode\n\t\t(2). Customer mode\n\t\t(3). Make invoice\n\t\t(q). Quit\n""")
     if choose_mode == '1':
         product_event_loop()
 

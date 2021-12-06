@@ -38,4 +38,4 @@ def get_product(name_product):
         stmt = select(Product.serial, Product.description, Product.price).filter_by(description=name_product)
         result = session.execute(stmt).all()
         product_list = list(flatten(result))
-    return product_list 
+    return product_list
