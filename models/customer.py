@@ -1,5 +1,3 @@
-import os 
-import sys
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy import create_engine

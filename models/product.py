@@ -11,6 +11,7 @@ class Product(Base):
     serial = Column(String(250))
     description = Column(String(250), nullable=False)
     price = Column(String(500))
-    product_invoices = relationship("ProductsInvoice", backref="products")
+#    product_invoices = relationship("ProductsInvoice", backref="invoices")
+    invoices = relationship("ProductsInvoice", back_populates="product")
 
 
