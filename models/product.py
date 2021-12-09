@@ -6,17 +6,11 @@ Base = declarative_base()
 
 class Product(Base):
     """Make model for a product and name table products"""
-    __tablename__ = 'Products'
-
+    __tablename__ = 'products'
     id = Column(Integer, primary_key=True)
     serial = Column(String(250))
     description = Column(String(250), nullable=False)
     price = Column(String(500))
-    parents = relationship("Association", back_populates="product")
+    product_invoices = relationship("ProductsInvoice", backref="products")
 
-#To be ran only once
-#engine = create_engine("sqlite:///invoices.db")
-#To be ran only once
-#Create table 
-#Base.metadata.create_all(engine)
 
