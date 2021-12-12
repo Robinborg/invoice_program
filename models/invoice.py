@@ -4,8 +4,13 @@ from sqlalchemy.orm import relationship, declarative_base
 Base = declarative_base()
 
 class Invoice(Base):
-    __tablename__ = 'invoices'
+    __tablename__ = 'invoice_table'
+
     id = Column(Integer, primary_key = True)
-    products = relationship("ProductsInvoice", back_populates = "invoice")
-    customers = relationship("Customer", back_populates = "invoice")
+    customer_id = Column(ForeignKey("customer_table.id"))
+    products_invoice_relationship = relationship("ProductsInvoice",
+                                                  back_populates = "invoice")
+    customer_relationship = relationship("Customer",
+                                         back_populates="invoice_relationship")
+
 

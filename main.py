@@ -1,17 +1,20 @@
 '''Generate invoices'''
 from invoice import InvoiceTemplate
 from interface.invoice_menus import product_interface, customer_interface
-from interface.product_menus import product_event_loop
-from interface.customer_menus import customer_event_loop
+from interface.product_menus import product_management_loop
+from interface.customer_menus import customer_management_loop
+
+#Run to create schema for SQL
+#from models import create_schema
 
 
 if __name__ == "__main__":
     choose_mode = input("""\t\tEnter:\n\t\t(1). Product mode\n\t\t(2). Customer mode\n\t\t(3). Make invoice\n\t\t(q). Quit\n""")
     if choose_mode == '1':
-        product_event_loop()
+        product_management_loop()
 
     elif choose_mode == '2':
-        customer_event_loop()
+        customer_management_loop()
 
     elif choose_mode == '3':
         products_list = product_interface()

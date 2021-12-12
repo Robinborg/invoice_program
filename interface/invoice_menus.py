@@ -2,18 +2,22 @@ from handlers.product_handler import get_product
 from handlers.customer_handler import get_customer
 
 def invoice_creation():
+    """Enter invoice creation loop"""
     menu = input("\t\tEnter (1). Create invoice or (q). Quit:\n")
     return menu
 
 def product_interface():
+    """Selecting products for the invoice"""
     product_table_for_invoice = product_selection_for_invoice()
     return product_table_for_invoice
 
 def customer_interface():
+    """Selecting customer for the invoice"""
     customer_list_for_invoice = customer_selection_for_invoice()
     return customer_list_for_invoice
 
 def product_selection_for_invoice():
+    """Product creation loop for invoice"""
     product_list = []
     while True:
         create_mode = input("\t\t(1). To enter product (q). Quit\n")
@@ -37,6 +41,7 @@ def product_selection_for_invoice():
     return product_list
 
 def customer_selection_for_invoice():
+    """Customer creation loop for invoice"""
     while True:
         create_mode = input("\t\t(1). To enter customer (q). Quit\n")
         if create_mode == 'q':

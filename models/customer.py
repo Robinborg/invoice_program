@@ -6,11 +6,13 @@ Base = declarative_base()
 
 class Customer(Base):
     """Declare base for Customer class"""
-    __tablename__ = 'customers'
+    __tablename__ = 'customer_table'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
     address = Column(String(500), nullable=False)
     phone = Column(String(250), nullable=False)
-    invoice_id = Column(Integer, ForeignKey("invoices.id"))
+    invoice_relationship = relationship("Invoice",
+                                        back_populates="customer_relationship")
+
 

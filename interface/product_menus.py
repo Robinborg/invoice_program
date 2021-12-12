@@ -8,7 +8,8 @@ def _product_menu():
     product_menu = input("\t\tChoose from the options:\n\t\t(1). Enter a new product\n\t\t(2). Display all products\n\t\t(3). Display a product\n\t\t(4). Delete a product\n\t\t(q). quit\n")
     return product_menu
 
-def product_event_loop():
+def product_management_loop():
+    """Product management for database"""
     while True:
         chosen_menu = _product_menu()
         if chosen_menu == 'q':

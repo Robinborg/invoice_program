@@ -7,7 +7,8 @@ def _customer_menu():
     customer_mode = input("""\t\tChoose from the options:\n\t\t(1). Enter a new customer\n\t\t(2). Display all customers\n\t\t(3). Display a customers\n\t\t(4). Delete a customer\n\t\t(q). Quit\n""")
     return customer_mode
 
-def customer_event_loop():
+def customer_management_loop():
+    """Customer handling for database"""
     while True:
         chosen_menu = _customer_menu()
         if chosen_menu == 'q':

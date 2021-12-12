@@ -21,21 +21,21 @@ def all_products():
 def remove_product(name_product: str = None):
     """Starts session to remove product and automatically ends it"""
     with Session.begin() as session:
-        stmt = delete(Product).where(Product.description == name_product).\
+        statement = delete(Product).where(Product.description == name_product).\
                 execution_options(synchronize_session='fetch')
-        session.execute(stmt)
+        session.execute(statement)
 
 def show_product(name_product):
     """Starts session to show a product and automatically ends it"""
     with Session.begin() as session:
-        stmt = select(Product.description).filter_by(description=name_product)
-        result = session.execute(stmt).all()
+        statement = select(Product.description).filter_by(description=name_product)
+        result = session.execute(statement).all()
         print(result)
 
 def get_product(name_product):
     """Starts session to show a product and automatically ends it"""
     with Session.begin() as session:
-        stmt = select(Product.serial, Product.description, Product.price).filter_by(description=name_product)
-        result = session.execute(stmt).all()
+        statement = select(Product.serial, Product.description, Product.price).filter_by(description=name_product)
+        result = session.execute(statement).all()
         product_list = list(flatten(result))
     return product_list
