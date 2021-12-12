@@ -3,7 +3,7 @@ Make your own invoices.
 ## Description
 This program is created to effortlessly print invoices and store customers, products and invoices in a database. 
 ## Prerequisites 
-python 3.9 or newer https://www.python.org/downloads/
+python 3.8 or newer https://www.python.org/downloads/
 ## Installation
     git clone https://github.com/Robinborg/invoice_program
     cd invoice_program
