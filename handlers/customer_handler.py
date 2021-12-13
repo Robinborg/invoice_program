@@ -4,10 +4,10 @@ from handlers import Session
 from utils.flatten_list import flatten
 
 
-def add_customer(name_customer):
+def add_customer(customer_object):
     """Starts session to add customer and automatically ends it"""
     with Session.begin() as session:
-        session.add(name_customer)
+        session.add(customer_object)
         session.commit()
 
 def all_customers():
