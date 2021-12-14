@@ -1,6 +1,7 @@
 from sqlalchemy import select, delete
 from models.products_invoice import ProductsInvoice
 from handlers import Session
+from models import Base
 
 
 def add_products_invoice(products_invoice_object):

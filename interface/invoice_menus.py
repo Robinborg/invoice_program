@@ -28,7 +28,7 @@ def product_selection_for_invoice():
             enter_quantity= input("\t\tEnter product quantity:\n")
             index = 0
             if enter_product == 'q':
-                break
+                product_invoice_loop = False
             product_for_list = get_product(enter_product)
             quantity_for_list = int(enter_quantity)
             total_for_list = quantity_for_list * int(product_for_list[2])
@@ -49,6 +49,6 @@ def customer_selection_for_invoice():
         else:
             enter_customer = input("\t\tEnter customer name:\n")
             if enter_customer == 'q':
-                break
+                customer_invoice_loop = False
             customer_list = get_customer(enter_customer)
     return customer_list

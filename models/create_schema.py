@@ -1,3 +1,5 @@
+"""The creation of the schema requires a certain order hence the classes are in this order"""
+
 from sqlalchemy import Table, Column, Integer, ForeignKey, String, create_engine
 from sqlalchemy.orm import relationship, declarative_base
 
@@ -10,7 +12,6 @@ class Product(Base):
     serial = Column(String(250))
     description = Column(String(250), nullable=False)
     price = Column(String(500))
-    products_invoice_id = Column(ForeignKey("products_invoice_table.id"))
     products_invoice_relationship = relationship("ProductsInvoice",
                                                   back_populates="product_relationship")
 class Customer(Base):
@@ -24,15 +25,13 @@ class Customer(Base):
     invoice_relationship = relationship("Invoice",
                                         back_populates="customer_relationship")
 
-
-
 class Invoice(Base):
     __tablename__ = 'invoice_table'
 
     id = Column(Integer, primary_key = True)
     customer_id = Column(ForeignKey("customer_table.id"))
     products_invoice_relationship = relationship("ProductsInvoice",
-                                                  back_populates = "invoice")
+                                                  back_populates = "invoice_relationship")
     customer_relationship = relationship("Customer",
                                          back_populates="invoice_relationship")
 

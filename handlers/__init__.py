@@ -1,7 +1,11 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
+from models import Base, Session
 
-engine = create_engine("sqlite:///invoices.db")
+from models.product import Product
+from models.customer import Customer
+from models.invoice import Invoice
+from models.products_invoice import ProductsInvoice
 
-Session = sessionmaker(engine, future=True)
+
 

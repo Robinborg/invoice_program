@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship, declarative_base
 from sqlalchemy import create_engine
+from models import Base
 
-Base = declarative_base()
 
 class Customer(Base):
     """Declare base for Customer class"""

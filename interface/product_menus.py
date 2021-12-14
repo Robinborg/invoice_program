@@ -31,5 +31,5 @@ def product_management_loop():
             product_description = input("\t\tRemove a product by description\n")
             remove_product(product_description)
         else:
-            print("You did not ener 1, 2, 3 or 4")
+            print("You did not enter q, 1, 2, 3 or 4")
 

@@ -1,7 +1,7 @@
 from sqlalchemy import Table, Column, Integer, ForeignKey, String, create_engine
 from sqlalchemy.orm import relationship, declarative_base
+from models import Base
 
-Base = declarative_base()
 
 class ProductsInvoice(Base):
     __tablename__ = "products_invoice_table"
