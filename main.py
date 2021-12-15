@@ -1,25 +1,24 @@
 '''Generate invoices'''
 from invoice import InvoiceTemplate
-from models import *
-from interface.invoice_menus import product_interface, customer_interface
-from interface.product_menus import product_management_loop
-from interface.customer_menus import customer_management_loop
-from models import Base
-
-#Run to create schema for SQL
-from models import create_schema
-
+from interface.invoice_interface import product_interface_for_invoice, \
+                                        customer_interface_for_invoice
+from interface.product_interface import product_management_loop
+from interface.customer_interface import customer_management_loop
 
 if __name__ == "__main__":
     while True:
-        choose_mode = input("""\t\tEnter:\n\t\t(1). Product mode\n\t\t(2). Customer mode\n\t\t(3). Make invoice\n\t\t(q). Quit\n""")
+        choose_mode = input("\t\tEnter:\n\t\t"
+                            " (1). Product mode\n\t\t"
+                            " (2). Customer mode\n\t\t"
+                            " (3). Make invoice\n\t\t"
+                            " (q). Quit\n")
         if choose_mode == '1':
             product_management_loop()
         elif choose_mode == '2':
             customer_management_loop()
         elif choose_mode == '3':
-            products_list = product_interface()
-            customer_list = customer_interface()
+            products_list = product_interface_for_invoice()
+            customer_list = customer_interface_for_invoice()
             make_invoice = InvoiceTemplate("100")
             make_invoice.make_data_table(products_list)
             make_invoice.create_document(invoice_number = 0,
@@ -31,5 +30,5 @@ if __name__ == "__main__":
             break
         else:
             print("You did not enter the right mode."
-                  "Rerun the program and choose 1, 2, 3 or q to quit")
+                  " Choose 1, 2, 3 or q to quit")
 

@@ -6,12 +6,12 @@ def invoice_creation():
     menu = input("\t\tEnter (1). Create invoice or (q). Quit:\n")
     return menu
 
-def product_interface():
+def product_interface_for_invoice():
     """Selecting products for the invoice"""
     product_table_for_invoice = product_selection_for_invoice()
     return product_table_for_invoice
 
-def customer_interface():
+def customer_interface_for_invoice():
     """Selecting customer for the invoice"""
     customer_list_for_invoice = customer_selection_for_invoice()
     return customer_list_for_invoice
