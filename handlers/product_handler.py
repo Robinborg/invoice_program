@@ -1,7 +1,6 @@
 from sqlalchemy import select, delete
 from models.product import Product
-from handlers import Session
-from models import Base
+from models import Base, Session
 from utils.flatten_list import flatten
 
 

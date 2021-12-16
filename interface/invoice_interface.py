@@ -20,15 +20,14 @@ def product_selection_for_invoice():
     """Product creation loop for invoice"""
     product_list = []
     while True:
-        create_mode = input("\t\t(1). To enter product (q). Quit\n")
+        create_mode = input("\t\t(1). To enter product or (q). Quit\n")
         if create_mode == 'q':
             break
         else:
             enter_product = input("\t\tEnter product name:\n")
             enter_quantity= input("\t\tEnter product quantity:\n")
-            index = 0
             if enter_product == 'q':
-                product_invoice_loop = False
+                break
             product_for_list = get_product(enter_product)
             quantity_for_list = int(enter_quantity)
             total_for_list = quantity_for_list * int(product_for_list[2])
@@ -43,12 +42,12 @@ def product_selection_for_invoice():
 def customer_selection_for_invoice():
     """Customer creation loop for invoice"""
     while True:
-        create_mode = input("\t\t(1). To enter customer (q). Quit\n")
+        create_mode = input("\t\t(1). To enter customer or (q). Quit\n")
         if create_mode == 'q':
             break
         else:
             enter_customer = input("\t\tEnter customer name:\n")
             if enter_customer == 'q':
-                customer_invoice_loop = False
+                break
             customer_list = get_customer(enter_customer)
     return customer_list

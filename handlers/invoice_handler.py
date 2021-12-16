@@ -1,7 +1,6 @@
 from sqlalchemy import select, delete
 from models.invoice import Invoice
-from handlers import Session
-from models import Base
+from models import Base, Session
 
 
 def add_invoice(filled_invoice):

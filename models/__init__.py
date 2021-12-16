@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 
 
 db_uri = "sqlite:///invoices.db"
-engine = create_engine(db_uri)
+engine = create_engine(db_uri, echo=True)
 
 Base = declarative_base()
 

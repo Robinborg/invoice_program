@@ -22,8 +22,9 @@ def customer_management_loop():
             customer_name= input("\t\tEnter customer name\n")
             customer_address = input("\t\tEnter customer address\n")
             customer_phone = input("\t\tEnter customer phone\n")
-            customer_details = Customer(name=customer_name, address=customer_address,\
-                    phone=customer_phone)
+            customer_details = Customer(name=customer_name,
+                                        address=customer_address,
+                                        phone=customer_phone)
             add_customer(customer_details)
         elif chosen_menu == '2':
             all_customers()
