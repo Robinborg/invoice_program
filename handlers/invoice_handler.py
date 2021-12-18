@@ -12,32 +12,29 @@ def add_invoice(filled_invoice):
 def all_invoices():
     """Starts session to show all invoices and automatically ends it"""
     with Session.begin() as session:
-        statement = select(Invoice.id, Invoice.customer_id,
-                           Invoice.product_invoice_relationship,
-                           Invoice.customer_relationship)
+        statement = select(Invoice.id,
+                           Invoice.serial)
         result = session.execute(statement).all()
         for row in result:
             print(row)
 
-def remove_invoice(number_invoice_id):
+def remove_invoice(serial_for_invoice):
     """Starts session to remove invoice and automatically ends it"""
     with Session.begin() as session:
-        statement = delete(Invoice).where(Invoice.id == number_invoice_id).\
+        statement = delete(Invoice).where(Invoice.serial == serial_for_invoice).\
                 execution_options(synchronize_session='fetch')
         session.execute(statement)
 
-def show_invoice(number_invoice_id):
+def show_invoice(serial_for_invoice):
     """Starts session to show a invoice and automatically ends it"""
     with Session.begin() as session:
-        statement = select(Invoice.id).filter_by(id=number_invoice_id)
+        statement = select(Invoice.serial).filter_by(Invoice.serial == serial_for_invoice)
         result = session.execute(statement).all()
         print(result)
 
-def get_invoice(number_invoice_id):
+def get_invoice_serial():
     """Starts session to show a invoice and automatically ends it"""
     with Session.begin() as session:
-        statement = select(Invoice.id, Invoice.customer_id,
-                           Invoice.product_invoice_relationship,
-                           Invoice.customer_relationship)
+        statement = select(Invoice.serial)
         result = session.execute(statement).all()
-    return result 
+    return result

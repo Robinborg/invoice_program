@@ -1,7 +1,6 @@
-"""Collection of messages for product mode"""
-
 from handlers.product_handler import add_product, all_products, remove_product, show_product, get_product
 from models.product import Product
+from utils.quit import quit_loop
 
 def _product_menu():
     """Display options for product mode"""
@@ -17,7 +16,7 @@ def product_management_loop():
     """Product management for database"""
     while True:
         chosen_menu = _product_menu()
-        if chosen_menu == 'q':
+        if quit_loop(chosen_menu):
             break
         elif chosen_menu == '1':
             product_serial = input("\t\tEnter product serial\n")

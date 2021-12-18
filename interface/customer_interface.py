@@ -1,6 +1,7 @@
 """Collection of messages for customer mode"""
 from handlers.customer_handler import add_customer, all_customers, remove_customer, show_customer, get_customer
 from models.customer import Customer
+from utils.quit import quit_loop
 
 def _customer_menu():
     """Display options for customer mode"""
@@ -16,7 +17,7 @@ def customer_management_loop():
     """Customer handling for database"""
     while True:
         chosen_menu = _customer_menu()
-        if chosen_menu == 'q':
+        if quit_loop(chosen_menu):
             break
         elif chosen_menu == '1':
             customer_name= input("\t\tEnter customer name\n")

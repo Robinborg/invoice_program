@@ -1,27 +1,36 @@
 '''Generate invoices'''
 from invoice_template import InvoiceTemplate
-from interface.invoice_interface import product_interface_for_invoice, \
+from interface.invoice_creation_interface import product_interface_for_invoice, \
                                         customer_interface_for_invoice
 from interface.product_interface import product_management_loop
 from interface.customer_interface import customer_management_loop
-from handlers import invoice_handler
+from interface.invoice_interface import invoice_management_loop
+from handlers.invoice_handler import get_invoice_serial, add_invoice
 from models import *
+from utils.quit import quit_loop
 
 if __name__ == "__main__":
     while True:
         enter_mode = input("\t\tEnter:\n\t\t"
                             "(1). Product mode\n\t\t"
                             "(2). Customer mode\n\t\t"
-                            "(3). Make invoice\n\t\t"
+                            "(3). Invoice mode\n\t\t"
+                            "(4). Make an invoice\n\t\t"
                             "(q). Quit\n")
         if enter_mode == '1':
             product_management_loop()
+
         elif enter_mode == '2':
             customer_management_loop()
+
         elif enter_mode == '3':
+            invoice_management_loop()
+
+        elif enter_mode == '4':
             products_list = product_interface_for_invoice()
             customer_list = customer_interface_for_invoice()
-
+            if customer_list == None:
+                break
             product_1 = Product(serial = products_list[0][0],
                                 description = products_list[0][1],
                                 price = products_list[0][2])
@@ -35,23 +44,23 @@ if __name__ == "__main__":
                                                  product_description = products_list[0][1],
                                                  product_rate = products_list[0][2],
                                                  product_quantity = products_list[0][3],
-                                                 product_total = products_list[0][4] 
+                                                 product_total = products_list[0][4]
                                                  )
          
-            invoice_1 = Invoice(customer_relationship = customer_1,
+            invoice_1 = Invoice(serial = get_invoice_serial() + 1,
+                                customer_relationship = customer_1,
                                 products_invoice_relationship = [products_invoice_1])
-            invoice_handler.add_invoice(invoice_1)
+            add_invoice(invoice_1)
 
 
-            #TODO:Retrieve latest invoice number to add to InvoiceTemplate("latest_number+1")
-            make_invoice = InvoiceTemplate("100")
+            make_invoice = InvoiceTemplate(get_invoice_serial())
             make_invoice.make_data_table(products_list)
-            make_invoice.create_document(invoice_number = 0,
+            make_invoice.create_document(invoice_number = get_invoice_serial(),
                                            customer_name = customer_list[0],
                                            customer_address = customer_list[1],
                                            customer_phone=customer_list[2])
             make_invoice.save_pdf()
-        elif enter_mode == 'q':
+        elif quit_loop(enter_mode):
             break
         else:
             print("You did not enter the right mode."
