@@ -21,13 +21,18 @@ def product_selection_for_invoice():
     """Product creation loop for invoice"""
     product_list = []
     while True:
-        create_mode = input("\t\t(1). To enter product or (q). Quit\n")
-        if quit_loop(create_mode):
+        create_mode = input("\t\t(1). To enter product or"
+                            " (c). To continue to customer"
+                            " or (q). To Quit: \n")
+        if (create_mode == "c" or create_mode == "C"
+                or create_mode.lower() == "continue"):
+            break
+        elif quit_loop(create_mode):
             break
         else:
             enter_product = input("\t\tEnter product name:\n")
             enter_quantity= input("\t\tEnter product quantity:\n")
-            if enter_product == 'q':
+            if quit_loop(enter_product):
                 break
             product_for_list = get_product(enter_product)
             quantity_for_list = int(enter_quantity)
@@ -42,12 +47,12 @@ def product_selection_for_invoice():
 
 def customer_selection_for_invoice():
     """Customer creation loop for invoice"""
-    create_mode = input("\t\t(1). To enter customer or (q). Quit\n")
+    create_mode = input("\t\t(1). To enter customer or (q). Quit:\n")
     if quit_loop(create_mode):
         return None
     else:
         enter_customer = input("\t\tEnter customer name:\n")
-        if enter_customer == 'q':
+        if quit_loop(enter_customer):
             return None
         customer_list = get_customer(enter_customer)
     return customer_list

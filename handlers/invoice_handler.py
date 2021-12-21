@@ -41,10 +41,6 @@ def get_invoice_serial():
         statement = select(Invoice.serial)
         result = session.execute(statement).all()
         result = flatten(result)
-        print(result)
-        print(type(result))
         result = list(result)
-        print(result)
         result = int(result[-1])
-        print(type(result))
     return result
