@@ -39,21 +39,25 @@ if __name__ == "__main__":
                                   address = customer_list[1],
                                   phone = customer_list[2])
             #TODO: Make it possibe to iterate the products_list to add all products_lists to database 
-            products_invoice_1 = ProductsInvoice(product_relationship = product_1,
-                                                 product_serial = products_list[0][0],
-                                                 product_description = products_list[0][1],
-                                                 product_rate = products_list[0][2],
-                                                 product_quantity = products_list[0][3],
-                                                 product_total = products_list[0][4]
+            full_list_of_products_invoices = []
+            for product_row in range(0, len(products_list)-2):
+                        products_invoice_list = ProductsInvoice(product_relationship = product_1,
+                                                 product_serial = products_list[product_row][0],
+                                                 product_description = products_list[product_row][1],
+                                                 product_rate = products_list[product_row][2],
+                                                 product_quantity = products_list[product_row][3],
+                                                 product_total = products_list[product_row][4]
                                                  )
+                        full_list_of_products_invoices.append(products_invoice_list)
+
          
-            invoice_1 = Invoice(serial = get_invoice_serial() + 1,
+            invoice_1 = Invoice(serial = 10000,
                                 customer_relationship = customer_1,
-                                products_invoice_relationship = [products_invoice_1])
+                                products_invoice_relationship = full_list_of_products_invoices)
             add_invoice(invoice_1)
 
 
-            make_invoice = InvoiceTemplate(get_invoice_serial())
+            make_invoice = InvoiceTemplate("1000")
             make_invoice.make_data_table(products_list)
             make_invoice.create_document(invoice_number = get_invoice_serial(),
                                            customer_name = customer_list[0],
