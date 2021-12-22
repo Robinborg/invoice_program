@@ -43,4 +43,7 @@ def get_invoice_serial():
         result = flatten(result)
         result = list(result)
         result = int(result[-1])
-    return result
+        if result == 0:
+            return 10000
+        else:
+            return result

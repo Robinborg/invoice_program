@@ -1,4 +1,4 @@
-'''Generate invoices'''
+"""Manage database and create invoice pdfs"""
 from invoice_template import InvoiceTemplate
 from interface.invoice_creation_interface import product_interface_for_invoice, \
                                         customer_interface_for_invoice
@@ -18,27 +18,37 @@ if __name__ == "__main__":
                             "(4). Make an invoice\n\t\t"
                             "(q). Quit\n")
         if enter_mode == '1':
+            #Manage product database
             product_management_loop()
 
         elif enter_mode == '2':
+            #Manage customer database
             customer_management_loop()
 
         elif enter_mode == '3':
+            #Manage invoice database
             invoice_management_loop()
 
         elif enter_mode == '4':
+            #Fetch products from database to invoice
             products_list = product_interface_for_invoice()
+            #Fetch customer from databse to invoice
             customer_list = customer_interface_for_invoice()
+            #Break out of invoice creation if None is returned
             if customer_list is None or len(products_list) <= 1:
                 break
+            #Fill product for database
             product_1 = Product(serial = products_list[0][0],
                                 description = products_list[0][1],
                                 price = products_list[0][2])
+            #Fill customer for database
             customer_1 = Customer(name = customer_list[0],
                                   address = customer_list[1],
                                   phone = customer_list[2])
-            #TODO: Make it possibe to iterate the products_list to add all products_lists to database 
+
+            #Full list of products for ProductsInvoice
             full_list_of_products_invoices = []
+            #Iterate produts_list to append full_list_of_products for ProductsInvoice
             for product_row in range(0, len(products_list)-2):
                 products_invoice_list = ProductsInvoice(product_relationship = product_1,
                                                  product_serial = products_list[product_row][0],
@@ -48,16 +58,19 @@ if __name__ == "__main__":
                                                  product_total = products_list[product_row][4]
                                                  )
                 full_list_of_products_invoices.append(products_invoice_list)
-            invoice_serial = get_invoice_serial() + 1
-            invoice_1 = Invoice(serial = invoice_serial,
+            #Get latest invoice number and add one for the new invoice
+            invoice_serial_plus_one = get_invoice_serial() + 1
+            #Fill invoice for database
+            invoice_1 = Invoice(serial = invoice_serial_plus_one,
                                 customer_relationship = customer_1,
                                 products_invoice_relationship = full_list_of_products_invoices)
+            #Add invoice to database
             add_invoice(invoice_1)
 
-
-            make_invoice = InvoiceTemplate("1000")
+            #Create the invoice PDF
+            make_invoice = InvoiceTemplate(str(invoice_serial_plus_one))
             make_invoice.make_data_table(products_list)
-            make_invoice.create_document(invoice_number = invoice_serial,
+            make_invoice.create_document(invoice_number = invoice_serial_plus_one,
                                            customer_name = customer_list[0],
                                            customer_address = customer_list[1],
                                            customer_phone=customer_list[2])
