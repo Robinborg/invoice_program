@@ -30,4 +30,6 @@ By running:
     python main.py 
 The program will start the prompts in your terminal.
 
+## Example PDF invoice
+
 <img src= "https://github.com/Robinborg/images/blob/main/Screenshot%202021-11-12%20at%2017.42.41.png?raw=true" width="300" height="500"/>
