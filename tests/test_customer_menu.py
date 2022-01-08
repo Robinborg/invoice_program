@@ -30,5 +30,12 @@ class Test(unittest.TestCase):
     def test_answer_quit(self, input):
         self.assertEqual(interface.customer_interface._customer_menu(), 'q')
 
+    @patch("interface.customer_interface._get_input", return_value = 'quit')
+    def test_answer_quit_two(self, input):
+        self.assertEqual(interface.customer_interface._customer_menu(), 'quit')
+
+    @patch("interface.customer_interface._get_input", return_value = 'Quit')
+    def test_answer_quit_three(self, input):
+        self.assertEqual(interface.customer_interface._customer_menu(), 'Quit')
 if __name__ == "__main__":
     unittest.main()

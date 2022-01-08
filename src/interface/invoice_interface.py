@@ -6,9 +6,13 @@ from utils.quit import quit_loop
 def invoice_serial():
     invoice_serial_input = input("\t\tSearch for invoice by serial: \n")
 
+#Refactor?
+def _get_input(text):
+    return input(text)
+
 def _invoice_menu():
     """Display options for invoice mode"""
-    invoice_menu = input("\t\tChoose from the options:\n\t\t"
+    invoice_menu = _get_input("\t\tChoose from the options:\n\t\t"
                          "(1). Display all invoices\n\t\t"
                          "(2). Display an invoice\n\t\t"
                          "(3). Delete an invoice\n\t\t"

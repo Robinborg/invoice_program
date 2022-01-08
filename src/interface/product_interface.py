@@ -2,9 +2,13 @@ from handlers.product_handler import add_product, all_products, remove_product, 
 from models.product import Product
 from utils.quit import quit_loop
 
+#refactor
+def _get_input(text):
+    return input(text)
+
 def _product_menu():
     """Display options for product mode"""
-    product_menu = input("\t\tChoose from the options:\n\t\t"
+    product_menu = _get_input("\t\tChoose from the options:\n\t\t"
                          "(1). Enter a new product\n\t\t"
                          "(2). Display all products\n\t\t"
                          "(3). Display a product\n\t\t"

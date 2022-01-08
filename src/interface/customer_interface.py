@@ -3,6 +3,7 @@ from handlers.customer_handler import add_customer, all_customers, remove_custom
 from models.customer import Customer
 from utils.quit import quit_loop
 
+#Refactor?
 def _get_input(text):
     return input(text)
 
