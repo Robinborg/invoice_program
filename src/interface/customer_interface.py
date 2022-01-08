@@ -3,9 +3,12 @@ from handlers.customer_handler import add_customer, all_customers, remove_custom
 from models.customer import Customer
 from utils.quit import quit_loop
 
+def _get_input(text):
+    return input(text)
+
 def _customer_menu():
     """Display options for customer mode"""
-    customer_mode = input("\t\tChoose from the options:\n\t\t"
+    customer_mode = _get_input("\t\tChoose from the options:\n\t\t"
                           "(1). Enter a new customer\n\t\t"
                           "(2). Display all customers\n\t\t"
                           "(3). Display a customers\n\t\t"
