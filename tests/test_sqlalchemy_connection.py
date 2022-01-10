@@ -27,31 +27,15 @@ def teardown_module():
     connection.close()
     engine.dispose()
 
-class TestQuery(unittest.TestCase):
+class TestConnection(unittest.TestCase):
 
     def setup(self):
-        self.__transaction = connection.begig_nested()
+        self.__transaction = connection.begin_nested()
         self.session = Session(connection)
 
     def teardown(self):
         self.session.close()
         self.__transaction.rollback()
-
-
-    #def test_product(self):
-    #    self.product = Product(serial = "1",
-    #                           description ="hammer",
-    #                           price = "100")
-    #    self.session.add(self.product)
-    #    self.session.commit()
-
-   ## def tear_down(self):
-   #     Base.metadata.drop_all(self.engine)
-
-   # def test_query_product(self):
-   #     expected = [self.product]
-   #     result = self.session.query(Product).all()
-   #     self.assertEqual(result, expected)
 
 if __name__ == "__main__":
     unittest.main()
