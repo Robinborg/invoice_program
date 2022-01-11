@@ -8,10 +8,8 @@ import unittest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base, Session
 
-from models.product import Product
+from models.customer import Customer
 from models import Base
-
-
 
 class TestQuery(unittest.TestCase):
 
@@ -21,10 +19,10 @@ class TestQuery(unittest.TestCase):
     
     def setUp(self):
         Base.metadata.create_all(self.engine)
-        self.product = Product(serial = "1",
-                               description ="hammer",
-                               price = "100")
-        self.session.add(self.product)
+        self.customer = Customer(name = "Joe",
+                               address ="Main street",
+                               phone = "555555")
+        self.session.add(self.customer)
         self.session.commit()
 
     def teardown(self):
@@ -32,8 +30,8 @@ class TestQuery(unittest.TestCase):
 
 
     def test_query_product(self):
-        expected = [self.product]
-        result = self.session.query(Product).all()
+        expected = [self.customer]
+        result = self.session.query(Customer).all()
         self.assertEqual(result, expected)
 
 
