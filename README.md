@@ -22,6 +22,22 @@ Version used in program: 1.4.27
 
 Link for [sqlalchemy](https://www.sqlalchemy.org)
 
+## Overview of the program folder:
+```
+├── img -> contains images for the README.md
+├── src -> main project directory, contains main.py
+│   ├── cli -> command line interface
+│   ├── handlers -> sqlalchemy handlers
+│   │
+│   ├── interface -> menus and eventloops for navigating the program 
+│   │ 
+│   ├── models -> __init__ contains the engine and setup for sqlalchemy, schemas are in the folder 
+│   │ 
+│   └── utils -> various helper functions for the program 
+│   
+│
+└── tests -> Unittesting for interface and models/handlers
+```
 ## Use
 The program uses an event loop to navigate the server and for creating the invoices.
 
