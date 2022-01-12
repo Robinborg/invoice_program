@@ -45,7 +45,7 @@ if __name__ == "__main__":
             #Full list of products for ProductsInvoice
             full_list_of_products_invoices = []
             #Iterate produts_list to append full_list_of_products for ProductsInvoice
-            for product_row in range(0, len(products_list)-2):
+            for product_row in range(0, len(products_list) - 2):
                 #Fill product for database
                 product_to_products_invoice_relationship = Product(
                                     serial = products_list[product_row][0],
