@@ -6,12 +6,15 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("square",
-                    help = "enter a number to square",
-                    type = int)
+parser.add_argument('-invoice',
+                    action = "store_true")
 args = parser.parse_args()
-print(args.square**2)
 
 if len(sys.argv) <= 1:
     sys.argv.append("--help")
+
+if args.a:
+    product_handler.add_product()
+else:
+    print("jumped the function")
 

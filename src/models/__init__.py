@@ -7,7 +7,6 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import create_engine
 
 
-
 #uri for engine
 db_uri = "sqlite:///invoices.db"
 #start engine for sqlalchemy and echo=True for SQL output
@@ -15,16 +14,10 @@ engine = create_engine(db_uri, echo=True)
 #Set declarative_base for the ORMs 
 Base = declarative_base()
 
-
 #Create schema
-file_there = "invoice_program/invoices.db"
-
+file_there = "invoice_program/src/invoices.db"
 if not path.exists(file_there):
     Base.metadata.create_all(engine)
-else:
-    pass
-
-
 
 #Create Session for all the modules
 Session = sessionmaker(engine)
