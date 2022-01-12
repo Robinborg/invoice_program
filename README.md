@@ -41,9 +41,14 @@ Link for [sqlalchemy](https://www.sqlalchemy.org)
 ## Use
 The program uses an event loop to navigate the server and for creating the invoices.
 
-By running:
-
-    python main.py 
+Setup database by running:
+    
+    python load_database.py
+ 
+Start the program after database is setup with:
+     
+     python main.py 
+     
 The program will start the prompts in your terminal.
 
 <img src= "https://github.com/Robinborg/invoice_program/blob/main/img/Screenshot%202022-01-06%20at%2014.59.17.png?raw=true" width="300" height="200"/>
