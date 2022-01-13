@@ -13,7 +13,10 @@ class InvoiceTemplate:
     def __init__(self, invoice_number: int):
         """Start the template with a Canvas and get the today's date"""
         self.PAGE_SIZE = A4 #(595.27, 841.90)
-        self.c = canvas.Canvas(invoice_number + ".pdf", pagesize=self.PAGE_SIZE, bottomup=0)
+        self.c = canvas.Canvas("pdf_invoices/"\
+                               +invoice_number +\
+                               ".pdf", pagesize=self.PAGE_SIZE,\
+                               bottomup=0)
         self.width, self.height = A4
         self.date = datetime.today().strftime('%d-%m-%Y')
 
