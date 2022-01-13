@@ -33,8 +33,9 @@ Link for [sqlalchemy](https://www.sqlalchemy.org)
 │   │ 
 │   ├── models -> __init__ contains the engine and setup for sqlalchemy, schemas are in the folder 
 │   │ 
-│   └── utils -> various helper functions for the program 
-│   
+│   ├── utils -> various helper functions for the program 
+│   │ 
+│   └── pdf_invoices -> folder for the invoices printed with invoice_program 
 │
 └── tests -> Unittesting for interface and models/handlers
 ```
