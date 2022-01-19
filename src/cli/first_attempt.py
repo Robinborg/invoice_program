@@ -6,9 +6,9 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-invoice",
+parser.add_argument("--invoice",
                     action = "store_true")
-parser.add_argument("-add_product",
+parser.add_argument("--add_product",
                     action="store_true")
 args = parser.parse_args()
 

@@ -3,7 +3,7 @@ from models.products_invoice import ProductsInvoice
 from models import Base, Session
 
 
-def add_products_invoice(products_invoice_object):
+def add_products_invoice(products_invoice_object: ProductsInvoice):
     with Session.begin() as session:
         session.add(products_invoice_object)
         session.commit()
@@ -22,13 +22,13 @@ def all_products_invoices():
         for row in result:
             print(row)
 
-def remove_products_invoice(products_invoice_id):
+def remove_products_invoice(products_invoice_id: str):
     with Session.begin() as session:
         statement = delete(ProductsInvoice.id == products_invoice_id).\
                            execution_options(synchronize_session="fetch")
         session.execute(statement)
 
-def show_products_invoice(products_invoice_id):
+def show_products_invoice(products_invoice_id: str):
     with Session.begin() as session:
         statement = select(ProductsInvoice.id,
                             ProductsInvoice.product_id,

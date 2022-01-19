@@ -8,8 +8,33 @@ from interface.invoice_interface import invoice_management_loop
 from handlers.invoice_handler import get_invoice_serial, add_invoice
 from models import Product, Customer, ProductsInvoice, Invoice
 from utils.quit import quit_loop
+import argparse
+from invoice_template import InvoiceTemplate
 
-if __name__ == "__main__":
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--invoice",
+                        action = "store_true")
+    args = parser.parse_args()
+    make_model_invoice = InvoiceTemplate("101010")
+    make_model_invoice.make_data_table([["7829",
+                                         "Computer",
+                                         "1299",
+                                         "1",
+                                         "1299"],
+                                        ["Serial",
+                                        "Goods and description",
+                                        "Rate",
+                                        "Quantity",
+                                        "Total"]])
+    make_model_invoice.create_document(invoice_number = "101010",
+                                       customer_name = "Joe Doe",
+                                       customer_address = "Main street",
+                                       customer_phone = "9999999")
+    make_model_invoice.save_pdf()
+    if args.invoice:
+        return "You got an invoice in pdf_invoices folder"
+
     while True:
         enter_mode = input("\t\tEnter:\n\t\t"
                             "(1). Product mode\n\t\t"
@@ -85,3 +110,6 @@ if __name__ == "__main__":
         else:
             print("You did not enter the right mode."
                     "\nEnter: 1, 2, 3 or q to quit")
+
+if __name__ == "__main__":
+    main()

@@ -33,7 +33,7 @@ def product_selection_for_invoice():
             enter_product = input("\t\tEnter product name:\n")
             enter_quantity= input("\t\tEnter product quantity:\n")
             if quit_loop(enter_product):
-                break
+                return "Quit"
             product_for_list = get_product(enter_product)
             quantity_for_list = int(enter_quantity)
             total_for_list = quantity_for_list * int(product_for_list[2])
