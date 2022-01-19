@@ -42,6 +42,10 @@ Link for [sqlalchemy](https://www.sqlalchemy.org)
 ## Use
 The program uses an event loop to navigate the server and for creating the invoices.
 
+*Example invoice with command:*
+    
+    python3 main.py --invoice
+
 Setup database by running:
     
     python load_database.py
