@@ -10,32 +10,62 @@ import unittest
 
 class Test(unittest.TestCase):
     """Test input for menus"""
-    @patch("interface.customer_interface._get_input", return_value = '1')
-    def test_answer_one(self, input):
-        self.assertEqual(interface.customer_interface._customer_menu(), '1')
+    @patch("interface.product_interface._get_input", side_effect = ['1', '2', '3', '4'])
+    def test_correct_integers(self, input):
+        """Test all correct input values"""
+        self.assertTrue(interface.customer_interface._customer_menu() == '1' and
+                        interface.customer_interface._customer_menu() == '2' and
+                        interface.customer_interface._customer_menu() == '3' and
+                        interface.customer_interface._customer_menu() == '4')
 
-    @patch("interface.customer_interface._get_input", return_value = '2')
-    def test_answer_two(self, input):
-        self.assertEqual(interface.customer_interface._customer_menu(), '2')
+    @patch("interface.product_interface._get_input", side_effect = ['-1', '-2', '-3', '-4'])
+    def test_answer_negative_integers(self, input):
+        """Test all negative input values"""
+        self.assertFalse(interface.customer_interface._customer_menu() == '1' and
+                        interface.customer_interface._customer_menu() == '2' and
+                        interface.customer_interface._customer_menu() == '3' and
+                        interface.customer_interface._customer_menu() == '4')
 
-    @patch("interface.customer_interface._get_input", return_value = '3')
-    def test_answer_three(self, input):
-        self.assertEqual(interface.customer_interface._customer_menu(), '3')
+    @patch("interface.product_interface._get_input", side_effect = ['11', '22', '33', '44'])
+    def test_answer_double_integers(self, input):
+        """Test all double integer inputs"""
+        self.assertFalse(interface.customer_interface._customer_menu() == '1' and
+                        interface.customer_interface._customer_menu() == '2' and
+                        interface.customer_interface._customer_menu() == '3' and
+                        interface.customer_interface._customer_menu() == '4')
 
-    @patch("interface.customer_interface._get_input", return_value = '4')
-    def test_answer_four(self, input):
-        self.assertEqual(interface.customer_interface._customer_menu(), '4')
+    @patch("interface.product_interface._get_input", side_effect = ['q', 'quit', 'Quit', 'QUIT'])
+    def test_answer_correct_quit(self, input):
+        """Test all correct inputs of quitting"""
+        self.assertTrue(interface.customer_interface._customer_menu() == 'q' and
+                        interface.customer_interface._customer_menu() == 'quit' and
+                        interface.customer_interface._customer_menu() == 'Quit' and
+                        interface.customer_interface._customer_menu() == 'QUIT')
 
-    @patch("interface.customer_interface._get_input", return_value = 'q')
-    def test_answer_quit(self, input):
-        self.assertEqual(interface.customer_interface._customer_menu(), 'q')
+    @patch("interface.product_interface._get_input", side_effect = ['qq', 'qquit', 'QQuit', 'QQUIT'])
+    def test_answer_double_string_quit(self, input):
+        """Test double entry quitting"""
+        self.assertTrue(interface.customer_interface._customer_menu() == 'qq' and
+                        interface.customer_interface._customer_menu() == 'qquit' and
+                        interface.customer_interface._customer_menu() == 'QQuit' and
+                        interface.customer_interface._customer_menu() == 'QQUIT')
 
-    @patch("interface.customer_interface._get_input", return_value = 'quit')
-    def test_answer_quit_two(self, input):
-        self.assertEqual(interface.customer_interface._customer_menu(), 'quit')
+    @patch("interface.product_interface._get_input", side_effect = ['pq', 'nquit', 'SQuit', 'TQUIT'])
+    def test_answer_leading_wrong_char_quit(self, input):
+        """Test misspelling quit"""
+        self.assertFalse(interface.customer_interface._customer_menu() == 'q' and
+                        interface.customer_interface._customer_menu() == 'quit' and
+                        interface.customer_interface._customer_menu() == 'Quit' and
+                        interface.customer_interface._customer_menu() == 'QUIT')
 
-    @patch("interface.customer_interface._get_input", return_value = 'Quit')
-    def test_answer_quit_three(self, input):
-        self.assertEqual(interface.customer_interface._customer_menu(), 'Quit')
+    @patch("interface.product_interface._get_input", side_effect = ['    q', '       quit', '       Quit', '      QUIT'])
+    def test_answer_leading_whitespace_quit(self, input):
+        """Adding extra space to quitting"""
+        self.assertFalse(interface.customer_interface._customer_menu() == 'q' and
+                        interface.customer_interface._customer_menu() == 'quit' and
+                        interface.customer_interface._customer_menu() == 'Quit' and
+                        interface.customer_interface._customer_menu() == 'QUIT')
+
+
 if __name__ == "__main__":
     unittest.main()
