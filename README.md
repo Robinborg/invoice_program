@@ -22,23 +22,13 @@ Version used in program: 1.4.27
 
 Link for [sqlalchemy](https://www.sqlalchemy.org)
 
-## Overview of the program folder:
-```
-├── img -> contains images for the README.md
-├── src -> main project directory, contains main.py
-│   ├── cli -> command line interface
-│   ├── handlers -> sqlalchemy handlers
-│   │
-│   ├── interface -> menus and eventloops for navigating the program 
-│   │ 
-│   ├── models -> __init__ contains the engine and setup for sqlalchemy, schemas are in the folder 
-│   │ 
-│   ├── utils -> various helper functions for the program 
-│   │ 
-│   └── pdf_invoices -> folder for the invoices printed with invoice_program 
-│
-└── tests -> Unittesting for interface and models/handlers
-```
+## Important files
+**invoice_program/src/invoice_template.py** contains the layout of the pdf.
+You can change the company name, company address, company postal and business id in this file.
+
+**invoice_program/src/models/__init__.py** contains all the setup for sqlalchemy 
+
+
 ## Use
 The program uses an event loop to navigate the server and for creating the invoices.
 
