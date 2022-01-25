@@ -28,12 +28,12 @@ def product_selection_for_invoice():
                 or create_mode.lower() == "continue"):
             break
         elif quit_loop(create_mode):
-            break
+            return None
         else:
             enter_product = input("\t\tEnter product name:\n")
             enter_quantity= input("\t\tEnter product quantity:\n")
             if quit_loop(enter_product):
-                return "Quit"
+                return None
             product_for_list = get_product(enter_product)
             quantity_for_list = int(enter_quantity)
             total_for_list = quantity_for_list * int(product_for_list[2])

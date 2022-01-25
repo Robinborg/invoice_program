@@ -12,6 +12,7 @@ import argparse
 from invoice_template import InvoiceTemplate
 
 def main():
+    #Command line argument for printing an invoice
     parser = argparse.ArgumentParser()
     parser.add_argument("--invoice",
                         action = "store_true")
@@ -34,7 +35,7 @@ def main():
     make_model_invoice.save_pdf()
     if args.invoice:
         return "You got an invoice in pdf_invoices folder"
-
+    #Main event loop for the program
     while True:
         enter_mode = input("\t\tEnter:\n\t\t"
                             "(1). Product mode\n\t\t"
