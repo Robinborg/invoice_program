@@ -21,38 +21,34 @@ def product_selection_for_invoice():
     """Product creation loop for invoice"""
     product_list = []
     while True:
-        create_mode = input("\t\t(1). To enter product or"
-                            " (c). To continue to customer"
-                            " or (q). To Quit: \n")
-        if (create_mode == "c" or create_mode == "C"
-                or create_mode.lower() == "continue"):
+        enter_product = input("""\t\tEnter: product name
+                              \n\t\tOr
+                              \n\t\tEnter: quit\n""")
+        if quit_loop(enter_product):
             break
-        elif quit_loop(create_mode):
-            return None
-        else:
-            enter_product = input("\t\tEnter product name:\n")
-            enter_quantity= input("\t\tEnter product quantity:\n")
-            if quit_loop(enter_product):
-                return None
-            product_for_list = get_product(enter_product)
-            quantity_for_list = int(enter_quantity)
-            total_for_list = quantity_for_list * int(product_for_list[2])
-            product_for_list.append(str(quantity_for_list))
-            product_for_list.append(str(total_for_list))
-            product_list.append(product_for_list)
-
-    column_names = ["Serial", "Description", "Price", "Quantity", "Total price"]
-    product_list.append(column_names)
-    return product_list
+        enter_quantity= input("""\t\tEnter: product quantity
+                              \n\t\tOr
+                              \n\t\tEnter: quit\n""")
+        if quit_loop(enter_quantity):
+            break
+        product_for_list = get_product(enter_product)
+        quantity_for_list = int(enter_quantity)
+        total_for_list = quantity_for_list * int(product_for_list[2])
+        product_for_list.append(str(quantity_for_list))
+        product_for_list.append(str(total_for_list))
+        product_list.append(product_for_list)
+    if enter_product and enter_quantity:
+        column_names = ["Serial", "Description", "Price", "Quantity", "Total price"]
+        product_list.append(column_names)
+        return product_list
+    return None
 
 def customer_selection_for_invoice():
     """Customer creation loop for invoice"""
-    create_mode = input("\t\t(1). To enter customer or (q). Quit:\n")
-    if quit_loop(create_mode):
+    enter_customer = input("""\t\tEnter: customer name
+                           \n\t\tOr
+                           \n\t\tEnter: quit:\n""")
+    if quit_loop(enter_customer):
         return None
-    else:
-        enter_customer = input("\t\tEnter customer name:\n")
-        if quit_loop(enter_customer):
-            return None
-        customer_list = get_customer(enter_customer)
+    customer_list = get_customer(enter_customer)
     return customer_list

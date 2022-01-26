@@ -67,6 +67,10 @@ class InvoiceTemplate:
         self.c.drawString(20, 790, "(This system generated invoice)")
         self.c.showPage()
 
+    def show_page(self):
+        """Continue page"""
+        self.c.showPage()
+
     def save_pdf(self):
         """Saves the pdf to the project folder"""
         self.c.save()

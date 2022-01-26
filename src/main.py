@@ -44,15 +44,12 @@ def main():
                             "(4). Make an invoice\n\t\t"
                             "(q). Quit\n")
         if enter_mode == '1':
-            #Manage product database
             product_management_loop()
 
         elif enter_mode == '2':
-            #Manage customer database
             customer_management_loop()
 
         elif enter_mode == '3':
-            #Manage invoice database
             invoice_management_loop()
 
         elif enter_mode == '4':
@@ -100,11 +97,44 @@ def main():
 
             #Create the invoice PDF
             make_invoice = InvoiceTemplate(str(invoice_serial))
-            make_invoice.make_data_table(products_list)
-            make_invoice.create_document(invoice_number = invoice_serial,
+            if 32 >= len(products_list) >= 16:
+                make_invoice.make_data_table(products_list[:8])
+                make_invoice.create_document(invoice_number = invoice_serial,
                                            customer_name = customer_list[0],
                                            customer_address = customer_list[1],
                                            customer_phone=customer_list[2])
+                make_invoice.show_page()
+                make_invoice.make_data_table(products_list[8:16])
+                make_invoice.create_document(invoice_number = invoice_serial,
+                                           customer_name = customer_list[0],
+                                           customer_address = customer_list[1],
+                                           customer_phone=customer_list[2])
+                make_invoice.show_page()
+                make_invoice.make_data_table(products_list[16:32])
+                make_invoice.create_document(invoice_number = invoice_serial,
+                                           customer_name = customer_list[0],
+                                           customer_address = customer_list[1],
+                                           customer_phone=customer_list[2])
+                make_invoice.show_page()
+            if 16 >= len(products_list) >= 8:
+                make_invoice.make_data_table(products_list[:8])
+                make_invoice.create_document(invoice_number = invoice_serial,
+                                           customer_name = customer_list[0],
+                                           customer_address = customer_list[1],
+                                           customer_phone=customer_list[2])
+                make_invoice.make_data_table(products_list[8:16])
+                make_invoice.create_document(invoice_number = invoice_serial,
+                                           customer_name = customer_list[0],
+                                           customer_address = customer_list[1],
+                                           customer_phone=customer_list[2])
+                make_invoice.show_page()
+            if len(products_list) < 10:
+                make_invoice.make_data_table(products_list)
+                make_invoice.create_document(invoice_number = invoice_serial,
+                                           customer_name = customer_list[0],
+                                           customer_address = customer_list[1],
+                                           customer_phone=customer_list[2])
+                make_invoice.make_data_table(products_list)
             make_invoice.save_pdf()
         elif quit_loop(enter_mode):
             break
