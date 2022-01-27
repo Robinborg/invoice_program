@@ -9,6 +9,26 @@ python 3.8 or newer. Link for [python](https://www.python.org/downloads/)
     cd invoice_program
     python3 -m pip install -r requirements.txt
     
+## Use
+The program uses an event loop to navigate the server and for creating the invoices.
+
+*Example invoice with command:*
+    
+    python3 main.py --invoice
+
+Setup database by running:
+    
+    python3 load_database.py
+ 
+Start the program after database is setup with:
+     
+     python3 main.py 
+     
+The program will start the prompts in your terminal.
+
+<img src= "https://github.com/Robinborg/invoice_program/blob/main/img/Screenshot%202022-01-06%20at%2014.59.17.png?raw=true" width="300" height="200"/>
+    
+    
 ## About
 The program uses Reportlab to sketch the layout for the pdf. 
 
@@ -29,24 +49,6 @@ You can change the company name, company address, company postal and business id
 **invoice_program/src/models/__init__.py** contains all the setup for sqlalchemy 
 
 
-## Use
-The program uses an event loop to navigate the server and for creating the invoices.
-
-*Example invoice with command:*
-    
-    python3 main.py --invoice
-
-Setup database by running:
-    
-    python load_database.py
- 
-Start the program after database is setup with:
-     
-     python main.py 
-     
-The program will start the prompts in your terminal.
-
-<img src= "https://github.com/Robinborg/invoice_program/blob/main/img/Screenshot%202022-01-06%20at%2014.59.17.png?raw=true" width="300" height="200"/>
 
 ## Example PDF invoice
 
