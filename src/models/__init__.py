@@ -8,7 +8,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import create_engine
 
 file_name = "invoices.db"
-file_path = '/Users/coalchewer/code/python/invoice_program/src'
+file_path = '/src/code/python/invoice_program/src'
 
 if not path.isfile(file_name):
     print("failed to locate server \n",
