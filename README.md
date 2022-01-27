@@ -16,7 +16,7 @@ The program uses an event loop to navigate the server and for creating the invoi
     
     python3 main.py --invoice
 
-Setup database by running:
+Before running main.py *Setup database by running*:
     
     python3 load_database.py
  
