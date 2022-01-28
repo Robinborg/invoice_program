@@ -14,7 +14,7 @@ The program uses an event loop to navigate the server and for creating the invoi
 
 *Example invoice with command:*
     
-    python3 main.py --invoice
+    python3 main.py -sample-invoice
 
 Before running main.py *Setup database by running*:
     
