@@ -74,3 +74,4 @@ class InvoiceTemplate:
     def save_pdf(self):
         """Saves the pdf to the project folder"""
         self.c.save()
+

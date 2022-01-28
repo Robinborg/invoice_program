@@ -3,10 +3,7 @@ from handlers.invoice_handler import add_invoice, all_invoices,\
 from utils.quit import quit_loop
 
 
-def invoice_serial():
-    invoice_serial_input = input("\t\tSearch for invoice by serial: \n")
 
-#Mock input // import from somewhere
 def _get_input(text):
     return input(text)
 
@@ -17,7 +14,6 @@ def _invoice_menu():
                          "(2). Display an invoice\n\t\t"
                          "(3). Delete an invoice\n\t\t"
                          "(q). quit\n")
-    #Verify information
     return invoice_menu
 
 def invoice_management_loop():
