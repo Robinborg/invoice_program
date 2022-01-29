@@ -7,8 +7,8 @@ from models import Base
 class Product(Base):
     """Make model for a product and name table products"""
     __tablename__ = 'product_table'
-    id = Column(Integer, primary_key=True)
-    serial = Column(String(250))
+    id = Column(Integer)
+    serial = Column(String(250), primary_key=True)
     description = Column(String(250), nullable=False)
     price = Column(String(500))
     products_invoice_relationship = relationship("ProductsInvoice",

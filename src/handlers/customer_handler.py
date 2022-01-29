@@ -19,7 +19,7 @@ def all_customers():
         for row in result:
             print(row)
 
-def remove_customer(name_customer: str): 
+def remove_customer(name_customer: str):
     """Starts session to remove customer and automatically ends it"""
     with Session.begin() as session:
         statement = delete(Customer).where(Customer.name == name_customer).\

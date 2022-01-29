@@ -57,17 +57,16 @@ def create_invoice_help():
         for eight in range(8, len(products_list), 8):
             if eight < 8:
                 make_invoice.make_data_table(products_list[help_slice:])
-                make_invoice.create_document(invoice_number = invoice_serial,
+                make_invoice.create_document(invoice_number = eight,
                                              customer_name = customer_list[0],
                                              customer_address = customer_list[1],
                                              customer_phone = customer_list[2])
             else:
                 make_invoice.make_data_table(products_list[help_slice:eight])
-                make_invoice.create_document(invoice_number = invoice_serial,
+                make_invoice.create_document(invoice_number = eight,
                                              customer_name = customer_list[0],
                                              customer_address = customer_list[1],
                                              customer_phone = customer_list[2])
-            make_invoice.show_page()
             help_slice += 8
     else:
         make_invoice.make_data_table(products_list)
