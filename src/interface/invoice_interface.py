@@ -4,10 +4,10 @@ from utils.quit import quit_loop
 
 
 
-def _get_input(text):
+def _get_input(text:str)->str:
     return input(text)
 
-def _invoice_menu():
+def _invoice_menu()->str:
     """Display options for invoice mode"""
     invoice_menu = _get_input("\t\tChoose from the options:\n\t\t"
                          "(1). Display all invoices\n\t\t"

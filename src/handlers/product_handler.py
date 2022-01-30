@@ -2,6 +2,7 @@ from sqlalchemy import select, delete
 from models.product import Product
 from models import Base, Session
 from utils.flatten_list import flatten
+from typing import List
 
 
 def add_product(name_product: Product):
@@ -32,7 +33,7 @@ def show_product(name_product: str):
         result = session.execute(statement).all()
         print(result)
 
-def get_product(name_product: str):
+def get_product(name_product: str)->List[str]:
     """Starts session to show a product and automatically ends it"""
     with Session.begin() as session:
         statement = select(Product.serial, Product.description, Product.price).filter_by(description=name_product)

@@ -4,10 +4,10 @@ from models.customer import Customer
 from utils.quit import quit_loop
 
 #Refactor?
-def _get_input(text):
+def _get_input(text: str)->str:
     return input(text)
 
-def _customer_menu():
+def _customer_menu()->str:
     """Display options for customer mode"""
     customer_mode = _get_input("\t\tChoose from the options:\n\t\t"
                           "(1). Enter a new customer\n\t\t"

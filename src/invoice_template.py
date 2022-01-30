@@ -51,7 +51,7 @@ class InvoiceTemplate:
         self.c.setFont("Helvetica-Bold", 15)
         self.c.drawCentredString(130, 60, "Business ID: 999999-9")
         #Middle section
-        self.c.roundRect(5, 80, 570, 100, 10, stroke=1, fill=0)
+        self.c.roundRect(-1, 80, 565, 100, 10, stroke=1, fill=0)
         self.c.setFont("Times-Bold", 12)
         self.c.drawRightString(200, 100, f"Customer name: {customer_name}" )
         self.c.drawRightString(200, 120, f"Date: {self.date} ")

@@ -35,7 +35,7 @@ def show_invoice(serial_for_invoice: str):
         result = session.execute(statement).all()
         print(result)
 
-def get_invoice_serial():
+def get_invoice_serial()->int:
     """Starts session to show a invoice and automatically ends it"""
     with Session.begin() as session:
         statement = select(Invoice.serial)

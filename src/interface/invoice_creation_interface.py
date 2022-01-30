@@ -23,20 +23,30 @@ def product_selection_for_invoice():
     while True:
         enter_product = input("""\t\tEnter: product name
                               \n\t\tOr
-                              \n\t\tEnter: quit\n""")
+                              \n\t\tEnter: quit to go to customer entry\n""")
         if quit_loop(enter_product):
             break
         enter_quantity= input("""\t\tEnter: product quantity
                               \n\t\tOr
                               \n\t\tEnter: quit\n""")
+        #Verify quantity type
+        try:
+            int(enter_quantity)
+        except ValueError:
+            print("You need to enter an integer")
+            continue
+
         if quit_loop(enter_quantity):
             break
+
+        #Sqlalchemy gets product and calculates quantity and total
         product_for_list = get_product(enter_product)
         quantity_for_list = int(enter_quantity)
         total_for_list = quantity_for_list * int(product_for_list[2])
         product_for_list.append(str(quantity_for_list))
         product_for_list.append(str(total_for_list))
         product_list.append(product_for_list)
+    #Verify user entered product and quantity
     if enter_product and enter_quantity:
         column_names = ["Serial", "Description", "Price", "Quantity", "Total price"]
         product_list.append(column_names)
@@ -44,7 +54,7 @@ def product_selection_for_invoice():
     return None
 
 def customer_selection_for_invoice():
-    """Customer creation loop for invoice"""
+    """Customer selection for invoice"""
     enter_customer = input("""\t\tEnter: customer name
                            \n\t\tOr
                            \n\t\tEnter: quit:\n""")

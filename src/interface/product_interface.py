@@ -3,10 +3,10 @@ from models.product import Product
 from utils.quit import quit_loop
 
 #refactor
-def _get_input(text):
+def _get_input(text:str)->str:
     return input(text)
 
-def _product_menu():
+def _product_menu()->str:
     """Display options for product mode"""
     product_menu = _get_input("\t\tChoose from the options:\n\t\t"
                          "(1). Enter a new product\n\t\t"

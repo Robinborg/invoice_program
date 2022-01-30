@@ -2,6 +2,7 @@ from sqlalchemy import select, delete
 from models.customer import Customer
 from models import Base, Session
 from utils.flatten_list import flatten
+from typing import List
 
 
 def add_customer(customer_object: Customer):
@@ -33,7 +34,7 @@ def show_customer(name_customer: str):
         result = session.execute(statement).all()
         print(result)
 
-def get_customer(name_customer: str):
+def get_customer(name_customer: str)->List[str]:
     """Starts session to show a customer and automatically ends it"""
     with Session.begin() as session:
         statement = select(Customer.name, Customer.address, Customer.phone).filter_by(name=name_customer)

@@ -7,7 +7,7 @@ from handlers.invoice_handler import get_invoice_serial, add_invoice
 
 
 
-def create_invoice_help():
+def create_invoice_help()->bool:
     #Fetch products from database for invoice
     products_list = product_interface_for_invoice()
     #Fetch customer from databse for invoice
