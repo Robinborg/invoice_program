@@ -12,6 +12,10 @@ python 3.8 or newer. Link for [python](https://www.python.org/downloads/)
 ## Use
 The program uses an event loop to navigate the server and for creating the invoices.
 
+The main.py is in src folder
+
+    cd src
+
 *Example invoice with command:*
     
     python3 main.py -sample-invoice
