@@ -8,7 +8,6 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import create_engine
 
 var = path.dirname(path.abspath(__file__))
-print(sys.path)
 
 file_name = "invoices.db"
 file_path = var + "/../"

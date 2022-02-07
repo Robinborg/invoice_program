@@ -1,16 +1,11 @@
 """Manage database and create invoice pdfs"""
 from invoice_template import InvoiceTemplate
-from interface.invoice_creation_interface import product_interface_for_invoice, \
-                                        customer_interface_for_invoice
 from interface.product_interface import product_management_loop
 from interface.customer_interface import customer_management_loop
 from interface.invoice_interface import invoice_management_loop
-from handlers.invoice_handler import get_invoice_serial, add_invoice
-from models import Product, Customer, ProductsInvoice, Invoice
 from utils.quit import quit_loop
 import argparse
 from utils.command_line import model_invoice
-from invoice_template import InvoiceTemplate
 from utils.invoice_create_helper import create_invoice_help
 
 def main():
