@@ -1,6 +1,7 @@
 from invoice_template import InvoiceTemplate
 
 def model_invoice():
+    """Make a model invoice in pdf_invoices folder"""
     make_model_invoice = InvoiceTemplate("101010")
     make_model_invoice.make_data_table([["7829",
                                          "Computer",
