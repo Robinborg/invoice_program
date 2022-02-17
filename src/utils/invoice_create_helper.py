@@ -8,23 +8,23 @@ from handlers.invoice_handler import get_invoice_serial, add_invoice
 
 
 def create_invoice_help()->bool:
-    #Fetch products from database for invoice
+    # Fetch products from database for invoice
     products_list = product_interface_for_invoice()
-    #Fetch customer from databse for invoice
+    # Fetch customer from databse for invoice
     customer_list = customer_interface_for_invoice()
-    #Break out of invoice creation if None is returned customer_list | product_list
+    # Break out of invoice creation if None is returned customer_list or product_list
     if customer_list is None or len(products_list) <= 1:
         return False
-    #Fill customer for database
+    # Fill customer for database
     customer_to_invoice_relationship = Customer(
                           name = customer_list[0],
                           address = customer_list[1],
                           phone = customer_list[2])
-    #Full list of products for ProductsInvoice
+    # list of products for ProductsInvoice
     full_list_of_products_invoices = []
-    #Iterate produts_list to append full_list_of_products for ProductsInvoice
+    # Iterate produts_list to append full_list_of_products for ProductsInvoice
     for product_row in range(0, len(products_list) - 2):
-        #Fill product for database
+        # Fill product for database
         product_to_products_invoice_relationship = Product(
                             serial = products_list[product_row][0],
                             description = products_list[product_row][1],
@@ -37,20 +37,20 @@ def create_invoice_help()->bool:
                                 product_quantity = products_list[product_row][3],
                                 product_total = products_list[product_row][4])
         full_list_of_products_invoices.append(products_invoice_list)
-    #Get latest invoice number and add one for the new invoice
-    #If there is no prior set the number to 10000
-    if get_invoice_serial() == None or get_invoice_serial() == 0:
-        invoice_serial = 10000
-    else:
-        invoice_serial = get_invoice_serial() + 1
-    #Fill invoice for database
+
+    # Get latest invoice number and add one for the new invoice
+    # If there is no prior set the number to 10000
+    invoice_serial = get_invoice_serial() + 1
+
+    # Fill invoice for database
     invoice_to_database = Invoice(serial = invoice_serial,
                         customer_relationship = customer_to_invoice_relationship,
                         products_invoice_relationship = full_list_of_products_invoices)
-    #Add invoice to database
+
+    # Add invoice to database
     add_invoice(invoice_to_database)
 
-    #Create the invoice PDF
+    # Create the invoice PDF
     make_invoice = InvoiceTemplate(str(invoice_serial))
     if len(products_list) > 8:
         help_slice = 0

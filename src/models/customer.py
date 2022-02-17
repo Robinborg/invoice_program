@@ -8,11 +8,11 @@ class Customer(Base):
     """Declare base for Customer class"""
     __tablename__ = 'customer_table'
 
-    id = Column(Integer)
-    name = Column(String(250), nullable=False, primary_key=True)
+    id = Column(Integer, primary_key=True)
+    name = Column(String(250), nullable=False)
     address = Column(String(500), nullable=False)
     phone = Column(String(250), nullable=False)
     invoice_relationship = relationship("Invoice",
-                                        back_populates="customer_relationship")
+                                        back_populates="customer_relationship", viewonly=True)
 
 

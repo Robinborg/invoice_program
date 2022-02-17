@@ -29,7 +29,7 @@ def remove_invoice(serial_for_invoice: str):
         session.execute(statement)
 
 def show_invoice(serial_for_invoice: str):
-    """Starts session to show a invoice and automatically ends it"""
+    """Starts session to show an invoice and automatically ends it"""
     with Session.begin() as session:
         statement = select(Invoice.serial).where(Invoice.serial == serial_for_invoice)
         result = session.execute(statement).all()
@@ -40,10 +40,10 @@ def get_invoice_serial()->int:
     with Session.begin() as session:
         statement = select(Invoice.serial)
         result = session.execute(statement).all()
+        print(result)
+        if not result:
+            return 1000
         result = flatten(result)
         result = list(result)
         result = int(result[-1])
-        if result == 0:
-            return 10000
-        else:
-            return result
+        return result
