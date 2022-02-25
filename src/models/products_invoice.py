@@ -14,7 +14,13 @@ class ProductsInvoice(Base):
     product_rate = Column(String(500))
     product_quantity = Column(String(500))
     product_total = Column(String(500))
-    product_relationship = relationship("Product", back_populates="products_invoice_relationship")
-    invoice_relationship = relationship("Invoice", back_populates="products_invoice_relationship")
+    product_relationship = relationship(
+        "Product",
+        back_populates="products_invoice_relationship"
+    )
+    invoice_relationship = relationship(
+        "Invoice",
+        back_populates="products_invoice_relationship"
+    )
 
 

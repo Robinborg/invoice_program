@@ -12,7 +12,9 @@ class Customer(Base):
     name = Column(String(250), nullable=False)
     address = Column(String(500), nullable=False)
     phone = Column(String(250), nullable=False)
-    invoice_relationship = relationship("Invoice",
-                                        back_populates="customer_relationship", viewonly=True)
+    invoice_relationship = relationship(
+        "Invoice",
+        back_populates="customer_relationship"
+    )
 
 
