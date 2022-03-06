@@ -23,7 +23,7 @@ def create_invoice_help()->bool:
     # list of products for ProductsInvoice
     full_list_of_products_invoices = []
     # Iterate produts_list to append full_list_of_products for ProductsInvoice
-    for product_row in range(0, len(products_list) - 2):
+    for product_row in range(0, len(products_list) - 1):
         # Fill product for database
         product_to_products_invoice_relationship = Product(
                             serial = products_list[product_row][0],
@@ -38,6 +38,7 @@ def create_invoice_help()->bool:
                                 product_total = products_list[product_row][4])
         full_list_of_products_invoices.append(products_invoice_list)
 
+    print(full_list_of_products_invoices)
     # Get latest invoice number and add one for the new invoice
     # If there is no prior set the number to 10000
     invoice_serial = get_invoice_serial() + 1

@@ -13,7 +13,7 @@ def _invoice_menu()->str:
                          "(1). Display all invoices\n\t\t"
                          "(2). Display an invoice\n\t\t"
                          "(3). Delete an invoice\n\t\t"
-                         "(q). quit\n")
+                         "(q). Quit\n")
     return invoice_menu
 
 def invoice_management_loop():

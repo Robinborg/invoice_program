@@ -13,10 +13,10 @@ def all_products_invoices():
         statement = select(ProductsInvoice.id,
                             ProductsInvoice.product_id,
                             ProductsInvoice.invoice_id,
-                            ProductsInvoice.produt_serial,
+                            ProductsInvoice.product_serial,
                             ProductsInvoice.product_description,
                             ProductsInvoice.product_rate,
-                            ProductsInvoice.quantity,
+                            ProductsInvoice.product_quantity,
                             ProductsInvoice.product_total)
         result = session.execute(statement).all()
         for row in result:

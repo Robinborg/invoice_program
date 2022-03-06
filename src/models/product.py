@@ -13,8 +13,7 @@ class Product(Base):
     price = Column(String(500))
     products_invoice_relationship = relationship(
         "ProductsInvoice",
-        back_populates="product_relationship",
-        viewonly=True
+        back_populates="product_relationship"
     )
     def __eq__(self, other):
         return isinstance(other, Product) and other.id == self.id

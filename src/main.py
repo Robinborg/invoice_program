@@ -1,5 +1,4 @@
 """Manage database and create invoice pdfs"""
-from invoice_template import InvoiceTemplate
 from interface.product_interface import product_management_loop
 from interface.customer_interface import customer_management_loop
 from interface.invoice_interface import invoice_management_loop
@@ -9,6 +8,7 @@ from utils.command_line import model_invoice
 from utils.invoice_create_helper import create_invoice_help
 
 def main():
+    """ main function for running program"""
     #Command line argument for printing an invoice
     parser = argparse.ArgumentParser()
     parser.add_argument("-sample-invoice",

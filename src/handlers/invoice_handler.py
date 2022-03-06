@@ -1,6 +1,7 @@
 from sqlalchemy import select, delete
 from models.invoice import Invoice
 from models.products_invoice import ProductsInvoice
+from models.customer import Customer
 from models import Base, Session
 from utils.flatten_list import flatten
 
@@ -14,9 +15,14 @@ def add_invoice(filled_invoice: Invoice):
 def all_invoices():
     """Starts session to show all invoices and automatically ends it"""
     with Session.begin() as session:
-        stmt = select('*').select_from(Invoice)
-        result = session.execute(stmt).fetchall()
+        stmt = select(Invoice.id,
+                      Invoice.serial,
+                      Invoice.customer_id,
+                      Invoice.products_invoice_relationship).\
+                      join(Invoice.products_invoice_relationship)
+        result = session.execute(stmt).all()
         print(result)
+
 
 def remove_invoice(serial_for_invoice: str):
     """Starts session to remove invoice and automatically ends it"""
@@ -28,7 +34,10 @@ def remove_invoice(serial_for_invoice: str):
 def show_invoice(serial_for_invoice: str):
     """Starts session to show an invoice and automatically ends it"""
     with Session.begin() as session:
-        statement = select(Invoice.serial).where(Invoice.serial == serial_for_invoice)
+        statement = select(Invoice.id,
+                           Invoice.serial,
+                           Invoice.customer_relationship,
+                           Invoice.products_invoice_relationship).where(Invoice.serial == serial_for_invoice).join(Invoice.products_invoice_relationship)
         result = session.execute(statement).all()
         print(result)
 
