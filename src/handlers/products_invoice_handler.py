@@ -19,8 +19,8 @@ def all_products_invoices():
                             ProductsInvoice.product_quantity,
                             ProductsInvoice.product_total)
         result = session.execute(statement).all()
-        for row in result:
-            print(row)
+        print(result)
+        return result
 
 def remove_products_invoice(products_invoice_id: str):
     with Session.begin() as session:

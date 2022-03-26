@@ -4,6 +4,7 @@ from models.products_invoice import ProductsInvoice
 from models.customer import Customer
 from models import Base, Session
 from utils.flatten_list import flatten
+from handlers.products_invoice_handler import all_products_invoices
 
 
 def add_invoice(filled_invoice: Invoice):
@@ -17,11 +18,13 @@ def all_invoices():
     with Session.begin() as session:
         stmt = select(Invoice.id,
                       Invoice.serial,
-                      Invoice.customer_id,
-                      Invoice.products_invoice_relationship).\
-                      join(Invoice.products_invoice_relationship)
+                      Invoice.customer_id)
         result = session.execute(stmt).all()
-        print(result)
+        products_invoices_list = all_products_invoices()
+        for row in zip(result, products_invoices_list):
+            print(row)
+
+        
 
 
 def remove_invoice(serial_for_invoice: str):
