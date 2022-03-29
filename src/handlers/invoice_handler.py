@@ -4,7 +4,7 @@ from models.products_invoice import ProductsInvoice
 from models.customer import Customer
 from models import Base, Session
 from utils.flatten_list import flatten
-from handlers.products_invoice_handler import all_products_invoices
+from handlers.products_invoice_handler import all_products_invoices, show_products_invoice
 
 
 def add_invoice(filled_invoice: Invoice):
@@ -39,9 +39,10 @@ def show_invoice(serial_for_invoice: str):
     with Session.begin() as session:
         statement = select(Invoice.id,
                            Invoice.serial,
-                           Invoice.customer_relationship,
-                           Invoice.products_invoice_relationship).where(Invoice.serial == serial_for_invoice).join(Invoice.products_invoice_relationship)
+                           Invoice.customer_relationship).where(Invoice.serial==serial_for_invoice)
         result = session.execute(statement).all()
+        products_invoice_object = show_products_invoice(result[0][0])
+        result.append(products_invoice_object)
         print(result)
 
 def get_invoice_serial()->int:

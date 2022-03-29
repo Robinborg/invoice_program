@@ -33,14 +33,14 @@ def show_products_invoice(products_invoice_id: str):
         statement = select(ProductsInvoice.id,
                             ProductsInvoice.product_id,
                             ProductsInvoice.invoice_id,
-                            ProductsInvoice.produt_serial,
+                            ProductsInvoice.product_serial,
                             ProductsInvoice.product_description,
                             ProductsInvoice.product_rate,
-                            ProductsInvoice.quantity,
+                            ProductsInvoice.product_quantity,
                             ProductsInvoice.product_total).\
                                             filter_by(id=products_invoice_id)
         result = session.execute(statement).all()
-        print(result)
+        return result
 
 
                                                                      
