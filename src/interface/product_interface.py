@@ -2,7 +2,6 @@ from handlers.product_handler import add_product, all_products, remove_product, 
 from models.product import Product
 from utils.quit import quit_loop
 
-#refactor
 def _get_input(text:str)->str:
     return input(text)
 
