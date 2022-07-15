@@ -8,7 +8,6 @@ python 3.8 or newer. Link for [python](https://www.python.org/downloads/)
     git clone https://github.com/Robinborg/invoice_program
     cd invoice_program
     python3 -m pip install -r requirements.txt
-    
 ## Use
 The program uses an event loop to navigate the server and for creating the invoices.
 
@@ -27,7 +26,7 @@ Before running main.py *Setup database by running*:
 Start the program after database is setup with:
      
      python3 main.py 
-     
+
 The program will start the prompts in your terminal.
 
 <img src= "https://github.com/Robinborg/invoice_program/blob/main/img/Screenshot%202022-01-06%20at%2014.59.17.png?raw=true" width="300" height="200"/>

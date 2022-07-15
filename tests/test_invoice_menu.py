@@ -1,7 +1,7 @@
 if __name__ == "__main__" and __package__ is None:
     import sys
     from os import path
-    var = path.dirname(path.abspath(__file__)) + "/../src"
+    var = path.dirname(path.abspath(__file__)) + "/../invoice"
     sys.path.append(var)
 
 import interface.invoice_interface
